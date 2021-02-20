@@ -1,5 +1,5 @@
 {
-	"name": "ts-jq-sass-webpack-eslint-prettier-project",
+	"name": "trivia",
 	"version": "1.0.0",
 	"description": "ts-jq-sass-webpack-eslint-prettier-template made with much, much help from Alex Merced and his npm package merced-spinup",
 	"main": "./dist/index.html",
