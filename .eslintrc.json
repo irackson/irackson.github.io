@@ -1,0 +1,15 @@
+{
+	"extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"no-console": "off",
+		"no-plusplus": "off",
+		"func-names": "off",
+		"no-param-reassign": "off",
+		"no-self-assign": "off",
+		"@typescript-eslint/indent": ["error", "tab"],
+		"@typescript-eslint/comma-dangle": ["off"]
+	}
+}
