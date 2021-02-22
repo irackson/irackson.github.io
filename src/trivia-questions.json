@@ -1,0 +1,253 @@
+{
+	"questions": [
+		{
+			"difficulty": "hard",
+			"datatype": "text",
+			"prompt": "If x^2 = 100, what are the possible values for x?",
+			"format": "list",
+			"valid": ["10", "-10", "0-(10i)^2"],
+			"invalid": ["(10i)^2"]
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"prompt": "What percentage should be added to 40 to make it 50?",
+			"format": "list",
+			"valid": ["25%"],
+			"invalid": ["15%", "75%", "80%"]
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "link",
+			"prompt": "Which of the URLs link to a page not found?",
+			"format": "list",
+			"valid": [
+				"https://jedi.mycohort.download/second-language/week-24/day-3/"
+			],
+			"invalid": [
+				"https://jedi.mycohort.download/coding-challenges#reverseupcasestring",
+				"www.mycohort.com",
+				"https://jedi.mycohort.download/frontend-fundamentals/week-3/day-3/labs/my-developer-skills-lab/"
+			],
+			"hint": "Familiarize yourself with the curriculum! Also, mycohort is currently for sale by HugeDomains, but nonetheless is a valid endpoint."
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "img",
+			"prompt": "Whose personal GitHub account has the highest contribution count over the last year?",
+			"format": "list",
+			"valid": [
+				"https://avatars.githubusercontent.com/u/52634838?s=460&u=aa05b8fcee5a38a55b56857aa379dce4887b25ca&v=4"
+			],
+			"invalid": [
+				"https://avatars.githubusercontent.com/u/58452223?s=460&u=79de1747e237fcac827d9842a93b638cc21802d7&v=4",
+				"https://avatars.githubusercontent.com/u/66440550?s=460&u=8efbed4567f07197b4ad49e0121f04173e2251f1&v=4",
+				"https://avatars.githubusercontent.com/u/936204?s=460&u=1c75ba3339476e753d3a6f8f067b1057220a4171&v=4",
+				"https://avatars.githubusercontent.com/u/17891125?s=460&u=abf4021515edef127878f03b5d5ccb3c6fc31399&v=4"
+			],
+			"hint": "Stalk them for yourself and see!"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "color",
+			"prompt": "Order these \"mouthwash\" shades from lightest to darkest.",
+			"format": "rank",
+			"order": ["#E6FFFE", "#87FEF8", "#28FEF3", "#01C5BB"],
+			"hint": "Get your eyes checked!"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "color",
+			"prompt": "Order these \"titanium\" shades from darkest to lightest.",
+			"format": "rank",
+			"order": ["#B6AFA9", "#CAC5C1", "#DFDCD9", "#F3F2F1"],
+			"hint": "Ask your dog!"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "color",
+			"prompt": "Order these \"conch\" shades from lightest to darkest.",
+			"format": "rank",
+			"order": ["#F6EFEF", "#E9D7D8", "#DDC0C1", "#D0A9AA"]
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "color",
+			"prompt": "Select the two identical colors.",
+			"format": "grid",
+			"valid": ["#4DD2FF", "#4DD2FF"],
+			"invalid": ["#EA6F4B", "#EA7256", "#AC9090", "#D0C0C0"]
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "color",
+			"prompt": "Select the one color that's not like the others.",
+			"format": "grid",
+			"valid": ["#862A51"],
+			"invalid": [
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252"
+			],
+			"hint": "\"voiletred4\" is not, and never will be, the same color as \"plumpudding\""
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"prompt": "Order the ECMAScript versions timeline from oldest to newest",
+			"format": "rank",
+			"order": [
+				"ES5",
+				"ES2015",
+				"ES6",
+				"The 7th Edition",
+				"ECMAScript 2017",
+				"BigInt, ??, globalThis"
+			],
+			"hint": "No one can help you. This will always be confusing."
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"prompt": "Complete the proverb by filling in the blank appropriately.",
+			"format": "blank",
+			"expression": "There's no such thing as a free (lunch).",
+			"hint": "Dinner. Or breakfast... definitely not lunch."
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"prompt": "Complete the proverb by filling in the blanks appropriately.",
+			"format": "blank",
+			"expression": "You can't have your (cake) and (eat) it too.",
+			"hint": "Everyone knows \"You can't have your eat and cake it too\""
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"prompt": "Complete the proverb by filling in the blank appropriately.",
+			"format": "blank",
+			"expression": "A rolling stone gathers no (moss).",
+			"hint": "Think about what it is that stones that are rolling do gather."
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"prompt": "Complete the proverb by filling in the blanks appropriately.",
+			"format": "blank",
+			"expression": "An (ounce) of protection is worth a (pound) of cure.",
+			"hint": "1 lb = 16 oz"
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "text",
+			"prompt": "Complete the proverb by filling in the blanks appropriately.",
+			"format": "blank",
+			"expression": "The grass is greener on the other side (of) (the) (fence).",
+			"hint": "The second missing word is \"the\""
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "img",
+			"prompt": "Select the shortest GIF.",
+			"format": "grid",
+			"valid": ["https://giphy.com/embed/8lZ3GBbIbqBsn6pCNS"],
+			"invalid": [
+				"https://giphy.com/embed/J1ugoU2Dis6DWWAoga",
+				"https://giphy.com/embed/Lb3m6dxZRHkbhRgwIa",
+				"https://giphy.com/embed/3dbLNOL4qdvLZqPK3M"
+			]
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "img",
+			"prompt": "Which characters are in the brady bunch?",
+			"format": "grid",
+			"valid": [
+				"https://giphy.com/embed/WiIC5AUPjlHxK",
+				"https://giphy.com/embed/xpY5NSHUDDaN2",
+				"https://giphy.com/embed/k13LPAMBfhfB6",
+				"https://giphy.com/embed/1UUZDJNTvgpSGbhdkc"
+			],
+			"invalid": [
+				"https://giphy.com/embed/l0ExayQDzrI2xOb8A",
+				"https://giphy.com/embed/Jxhb1p6wm1eTu",
+				"https://giphy.com/embed/5xjCPLiKMrfm8",
+				"https://giphy.com/embed/hmpqVzwPARTmo",
+				"https://giphy.com/embed/12J1QXPeD10z9m"
+			],
+			"hint": "Only four are correct."
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"prompt": "Form one of the thirteen possible 5 letter words in the Words With Friends dictionary.",
+			"format": "dropdown",
+			"options": [
+				["a"],
+				["b", "d", "f", "g", "l", "n", "s", "u", "x"],
+				["a", "b", "e", "g", "i", "n", "o", "r", "w", "y"],
+				["a", "e", "h", "i", "o", "r", "s", "u"],
+				["m"]
+			],
+			"answers": [
+				"axiom",
+				"abohm",
+				"abysm",
+				"album",
+				"algum",
+				"abeam",
+				"afoam",
+				"annum",
+				"aswim",
+				"agism",
+				"aurum",
+				"adeem",
+				"alarm"
+			],
+			"reference": "https://word.tips/unscramble/_/words-start-with/A/words-end-in/M/length/5"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"prompt": "Form one of the eight possible 4 letter words in the Words With Friends dictionary.",
+			"format": "dropdown",
+			"options": [
+				["p"],
+				["a", "e", "i", "l", "o", "r", "u"],
+				["a", "i", "n", "o", "u"],
+				["g"]
+			],
+			"answers": [
+				"plug",
+				"pung",
+				"pang",
+				"ping",
+				"pong",
+				"peag",
+				"prig",
+				"prog"
+			],
+			"reference": "https://word.tips/unscramble/_/words-start-with/P/words-end-in/G/length/4"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"prompt": "Form one of the four possible 5 letter words in the Words With Friends dictionary.",
+			"format": "dropdown",
+			"options": [
+				["g"],
+				["l", "o", "u"],
+				["i", "l", "o", "u"],
+				["a", "g", "n"],
+				["g"]
+			],
+			"answers": ["glugg", "glogg", "gulag", "going"],
+			"reference": "https://word.tips/unscramble/_/words-start-with/G/words-end-in/G/length/5"
+		}
+	]
+}

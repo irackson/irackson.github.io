@@ -37,7 +37,16 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-/* ___          ___    ___  __      __   __   __   ___ 
-/*  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__  
-/*  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___ 
-/*                                                      */
+//! ___          ___    ___  __      __   __   __   ___
+//!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
+//!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
+
+//* use font-awesome
+//* consider bootstrap
+
+// TODO: question endpoint: https://cdn.aglty.io/3bikcueb/trivia/trivia-questions.json
+// TODO: 2 modes: PvP and co-op
+// TODO: timed, with option to choose seconds/question vs. not timed
+// TODO: click to reveal hint if available
+// TODO: display reference if available
+/* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
