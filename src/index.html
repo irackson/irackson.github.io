@@ -3,10 +3,49 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Trivia Game</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&family=Titillium+Web:wght@900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Ian's Trivia Game</title>
 	</head>
 	<body>
-		<h1>Trivia Game</h1>
-		<h3><em>unit-1 project</em></h3>
+		<main class="main-container">
+			<header class="header-container">
+				<div class="social-container">
+					<span id="author-text">@irackson</span>
+					<div class="link-container">
+						<span id="github">🤓</span>
+						<span id="email">✉️</span>
+						<span id="youtube">📹</span>
+					</div>
+				</div>
+				<div class="play-container">
+					<span id="play-text">PLAY</span>
+				</div>
+			</header>
+			<section class="hero-container">
+				<div class="lock-container">
+					<div class="player" id="player-1">
+						<span id="player-1-text">P1</span>
+					</div>
+				</div>
+				<div class="info-container">
+					<div class="score-container"></div>
+					<div class="stat-container">
+						<div class="qnum-container"></div>
+						<div class="qgrade-container"></div>
+					</div>
+				</div>
+				<div class="lock-container">
+					<div class="player" id="player-2">
+						<span id="player-2-text">P2</span>
+					</div>
+				</div>
+			</section>
+			<section class="prompt-container">prompt</section>
+			<section class="response-container">response</section>
+		</main>
 	</body>
 </html>

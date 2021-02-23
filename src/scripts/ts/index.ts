@@ -45,8 +45,11 @@ customLog(
 //* consider bootstrap
 
 // TODO: question endpoint: https://cdn.aglty.io/3bikcueb/trivia/trivia-questions.json
-// TODO: 2 modes: PvP and co-op
+// TODO: each player has their own submit button
 // TODO: timed, with option to choose seconds/question vs. not timed
 // TODO: click to reveal hint if available
 // TODO: display reference if available
+// TODO: scores start at 100%
+// TODO: mobile design is minimal, but as screen gets bigger instructions are added
+
 /* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */

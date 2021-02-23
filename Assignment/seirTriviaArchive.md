@@ -20,7 +20,7 @@ For your first project you will be creating a trivia game. The topic of the triv
 
 ---
 
-## Prerequistes
+## Prerequisites
 
 In order to help set you up for success you are required to do the following before you attempt to plan out your project:
 
