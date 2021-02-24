@@ -37,13 +37,15 @@ main {
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
+		height: 15%;
 
 		.social-container {
-			height: 20%;
+			height: 35%;
 			width: 100%;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
+			align-items: center;
 
 			#author-text {
 				font-family: 'Titillium Web', sans-serif;
@@ -54,48 +56,247 @@ main {
 			.link-container {
 				display: flex;
 				flex-direction: row;
-				line-height: 0.9em;
+
+				#github,
+				#slack {
+					:active {
+						color: rgb(202, 8, 8);
+					}
+				}
+
+				#github {
+					padding-right: 0.6em;
+				}
 			}
 		}
 
 		.play-container {
-			background-color: green;
-			border: 1px solid black;
-			border-radius: 5px;
-			height: 80%;
-			padding-left: 3px;
-			padding-right: 3px;
-			padding-top: 1px;
-			padding-bottom: 1px;
-			width: min-content;
-			height: min-content;
+			height: 65%;
+
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: max(1.3em);
-			overflow: clip;
-			white-space: nowrap;
-			line-height: 1em;
 
-			#play-text {
-				font-family: 'DotGothic16', sans-serif;
-				user-select: none;
+			#play-button {
+				background-color: green;
+				border: 1px solid goldenrod;
+				color: goldenrod;
+				font-family: 'Press Start 2P', cursive;
+				padding-top: 2%;
+				padding-left: 1%;
+				word-spacing: -0.5em;
 			}
 		}
 	}
 
 	.hero-container {
+		height: 20%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
 		border: 1px solid black;
-		height: 25%;
+
+		.lock-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 15%;
+			height: 100%;
+		}
+
+		#player-1-button,
+		#player-2-button {
+			background-color: blue;
+			color: white;
+			text-align: center;
+			padding-bottom: 4px;
+			visibility: hidden;
+		}
+
+		.info-container {
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+
+			.inactive-game-container {
+				height: 100%;
+				font-family: 'Titillium Web', sans-serif;
+
+				.inactive-game-text {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+
+					p {
+						margin: 0;
+						width: fit-content;
+					}
+
+					#choose-text {
+						font-size: 0.7em;
+						color: silver;
+					}
+
+					#mode-text {
+						font-size: 1.2em;
+					}
+				}
+			}
+
+			.active-game-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				height: 100%;
+
+				.score-container {
+					height: 75%;
+					border: 1px solid blue;
+				}
+
+				.stat-container {
+					height: 20%;
+					border: 1px solid purple;
+				}
+			}
+		}
 	}
 
-	.prompt-container {
+	.middle-container {
 		border: 1px solid black;
-		height: 10%;
+		height: 15%;
+		overflow: hidden;
+
+		.mode-container {
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			// display: none;
+
+			.mode-select {
+				width: 35%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+
+				#dev-select-button,
+				#otdb-select-button {
+					background-color: blue;
+					color: goldenrod;
+					padding-bottom: 4px;
+					font-size: max(1em);
+				}
+			}
+		}
+
+		.prompt-container {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			#prompt {
+				font-family: 'IM Fell English', serif;
+				font-style: italic;
+				text-align: center;
+				font-size: 0.8em;
+			}
+		}
 	}
 
-	.response-container {
+	.bottom-container {
 		border: 1px solid black;
 		height: 45%;
+		font-family: 'IM Fell English', serif;
+		// overflow: hidden;
+
+		.dev-pregame-container {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			display: none;
+
+			.dev-description-container {
+				height: 15%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+
+				.dev-description-text {
+					font-size: max(0.6em);
+					font-weight: 700;
+					text-align: center;
+					margin: 0;
+				}
+			}
+
+			.dev-details-container {
+				height: 75%;
+				width: 100%;
+				border: 1px solid purple;
+			}
+		}
+
+		.otdb-pregame-container {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-start;
+			background-color: lemonchiffon;
+
+			.otdb-description-container {
+				height: 15%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+
+				.otdb-description-text {
+					font-size: max(0.6em);
+					font-weight: 700;
+					text-align: center;
+					margin: 0;
+				}
+			}
+
+			.otdb-parameters-container {
+				height: 75%;
+				width: 100%;
+				border: 1px solid purple;
+			}
+		}
+
+		.response-container {
+			height: 100%;
+			background-color: gray;
+		}
 	}
+}
+
+.button {
+	border: 1px solid black;
+	border-radius: 5px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: min-content;
+	height: min-content;
+	font-size: max(1.3em);
+	overflow: clip;
+	line-height: 1em;
+	user-select: none;
+	font-family: 'DotGothic16', sans-serif;
+}
+
+.nowrap {
+	white-space: nowrap;
 }
