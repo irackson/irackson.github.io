@@ -57,6 +57,21 @@ customLog(
 
 /* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
 
+interface OtdbParameters {
+	amount?: string;
+	category?: string;
+	difficulty?: string;
+	type?: string;
+}
+
+const playTrivia = function (otdbParameters?: OtdbParameters): void {
+	if (otdbParameters) {
+		console.log(otdbParameters);
+	} else {
+		console.log('dev');
+	}
+};
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const $playButton = $('#play-button');
 
@@ -149,8 +164,40 @@ $playButton.on('click', function (e) {
 		$playButton.css('border', '1px solid silver');
 
 		gameOn = true;
-		console.log(otdbParametersForm);
-		// let otdbParams = {"amount":}
+
+		if (modeSelected === 'dev') {
+			playTrivia();
+		}
+		if (modeSelected === 'otdb') {
+			let amount;
+			let category;
+			let difficulty;
+			let type;
+			const params = $('#otdb-parameters-form').serializeArray();
+			for (let i = 0; i < params.length; i++) {
+				if (params[i].name === 'otdb-num-input') {
+					amount = params[i].value;
+				}
+				if (params[i].name === 'otdb-format-input') {
+					type = params[i].value;
+				}
+				if (params[i].name === 'otdb-diff-input') {
+					difficulty = params[i].value;
+				}
+				if (params[i].name === 'otdb-cat-input') {
+					category = params[i].value;
+				}
+			}
+
+			const otdbParameters: OtdbParameters = {
+				amount,
+				category,
+				difficulty,
+				type,
+			};
+
+			playTrivia(otdbParameters);
+		}
 	} else {
 		console.log('CHOOSE should bounce');
 		// add bounce animation to choose game mode...
