@@ -51,6 +51,9 @@ customLog(
 // TODO: display reference if available
 // TODO: scores start at 100%
 // TODO: mobile design is minimal, but as screen gets bigger instructions are added
+// TODO: fix fontawesome link bug
+// TODO: add bounce animation to CHOOSE and/or GAME MODE after play click w/out mode selected
+// TODO: add cool animation question mark to response container when game is inactive and no mode is selected thats visible on load
 
 /* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
 
@@ -68,7 +71,12 @@ const $otdbSelectButton = $('#otdb-select-button');
 const $promptContainer = $('.prompt-container');
 
 const $devPregameContainer = $('.dev-pregame-container'); // hidden onload
+
 const $otdbPregameContainer = $('.otdb-pregame-container'); // hidden onload
+const otdbParametersForm: HTMLFormElement = document.getElementById(
+	'otdb-parameters-form'
+) as HTMLFormElement;
+
 const $responseContainer = $('.response-container'); // hidden onload
 
 /* eslint-enable @typescript-eslint/no-unused-vars */
@@ -80,6 +88,9 @@ $devSelectButton.on('click', function (e) {
 	$player1Button.hide();
 	$player2Button.hide();
 	$otdbPregameContainer.hide();
+
+	$otdbSelectButton.css('border', '1px solid black');
+	$devSelectButton.css('border', '3px solid silver');
 	$devPregameContainer.show();
 
 	modeSelected = 'dev';
@@ -87,9 +98,15 @@ $devSelectButton.on('click', function (e) {
 
 $otdbSelectButton.on('click', function (e) {
 	e.preventDefault();
+
 	$player1Button.hide();
 	$player2Button.hide();
 	$devPregameContainer.hide();
+
+	$devSelectButton.css('border', '1px solid black');
+	$otdbSelectButton.css('border', '3px solid silver');
+
+	otdbParametersForm.reset();
 	$otdbPregameContainer.show();
 
 	modeSelected = 'otdb';
@@ -97,6 +114,8 @@ $otdbSelectButton.on('click', function (e) {
 
 $playButton.on('click', function (e) {
 	e.preventDefault();
+	$devSelectButton.css('border', '1px solid black');
+	$otdbSelectButton.css('border', '1px solid black');
 
 	if (gameOn) {
 		// reset to reload state
@@ -109,6 +128,8 @@ $playButton.on('click', function (e) {
 
 		$inactiveGameContainer.show();
 		$modeContainer.show();
+
+		$playButton.css('border', '1px solid goldenrod');
 
 		gameOn = false;
 		modeSelected = undefined;
@@ -125,10 +146,13 @@ $playButton.on('click', function (e) {
 		$promptContainer.show();
 		$responseContainer.show();
 
+		$playButton.css('border', '1px solid silver');
+
 		gameOn = true;
-		// call start game function...
+		console.log(otdbParametersForm);
+		// let otdbParams = {"amount":}
 	} else {
-		console.log('hi');
+		console.log('CHOOSE should bounce');
 		// add bounce animation to choose game mode...
 	}
 });
