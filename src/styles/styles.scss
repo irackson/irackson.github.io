@@ -94,7 +94,7 @@ main {
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		border: 1px solid black;
+		// overflow: hidden;
 
 		.lock-container {
 			display: flex;
@@ -110,7 +110,7 @@ main {
 			color: white;
 			text-align: center;
 			padding-bottom: 4px;
-			visibility: hidden;
+			display: none;
 		}
 
 		.info-container {
@@ -150,31 +150,31 @@ main {
 				flex-direction: column;
 				justify-content: space-between;
 				height: 100%;
+				display: none;
 
 				.score-container {
 					height: 75%;
-					border: 1px solid blue;
+					// border: 1px solid blue;
+					background-color: rgb(31, 134, 100);
 				}
 
 				.stat-container {
 					height: 20%;
-					border: 1px solid purple;
+					// border: 1px solid purple;
+					background-color: rgb(103, 162, 196);
 				}
 			}
 		}
 	}
 
 	.middle-container {
-		border: 1px solid black;
 		height: 15%;
-		overflow: hidden;
 
 		.mode-container {
 			height: 100%;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-around;
-			// display: none;
 
 			.mode-select {
 				width: 35%;
@@ -198,6 +198,7 @@ main {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			display: none;
 
 			#prompt {
 				font-family: 'IM Fell English', serif;
@@ -212,14 +213,13 @@ main {
 		border: 1px solid black;
 		height: 45%;
 		font-family: 'IM Fell English', serif;
-		// overflow: hidden;
+		overflow: hidden;
 
 		.dev-pregame-container {
 			height: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			align-items: flex-start;
 			display: none;
 
 			.dev-description-container {
@@ -227,7 +227,8 @@ main {
 				width: 100%;
 				display: flex;
 				justify-content: center;
-				align-items: flex-end;
+				align-items: center;
+				border: 1px solid green;
 
 				.dev-description-text {
 					font-size: max(0.6em);
@@ -235,6 +236,10 @@ main {
 					text-align: center;
 					margin: 0;
 				}
+			}
+
+			.dev-dummy-spacing {
+				height: 10%;
 			}
 
 			.dev-details-container {
@@ -249,15 +254,15 @@ main {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			align-items: flex-start;
-			background-color: lemonchiffon;
+			display: none;
 
 			.otdb-description-container {
 				height: 15%;
 				width: 100%;
 				display: flex;
 				justify-content: center;
-				align-items: flex-end;
+				align-items: center;
+				border: 1px solid green;
 
 				.otdb-description-text {
 					font-size: max(0.6em);
@@ -265,6 +270,10 @@ main {
 					text-align: center;
 					margin: 0;
 				}
+			}
+
+			.otdb-dummy-spacing {
+				height: 10%;
 			}
 
 			.otdb-parameters-container {
@@ -277,6 +286,7 @@ main {
 		.response-container {
 			height: 100%;
 			background-color: gray;
+			display: none;
 		}
 	}
 }
