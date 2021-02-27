@@ -1,5 +1,8 @@
 /* eslint-disable */
 require('../../styles/styles.scss');
+import Match from './Match';
+import Player from './Player';
+
 import $ from 'jquery';
 import _ from 'lodash';
 
@@ -115,6 +118,17 @@ const runQuiz = function (data: any): void {
 	//* $promptContainer.text(match.winner)
 	//* $player1Button.hide(), $player2Button.hide()
 	//* show wrong questions and right answers for each player in $responseContainer
+
+	/* CODE HERE */
+	const player1 = new Player(0);
+
+	const player2 = new Player(0);
+
+	const match = new Match(player1, player2);
+
+	player1.setScore(5);
+	player2.setScore(5);
+	console.log(match.compareScores());
 };
 
 const playTrivia = function (otdbParameters?: OtdbParameters): void {
