@@ -1,7 +1,7 @@
 /* eslint-disable */
 require('../../styles/styles.scss');
 import $ from 'jquery';
-// import _ from 'lodash';
+import _ from 'lodash';
 
 /* eslint-enable */
 function customLog(message: any, color = 'black'): void {
@@ -51,6 +51,7 @@ customLog(
 // TODO: add bounce animation to CHOOSE and/or GAME MODE after play click w/out mode selected
 // TODO: add cool animation question mark to response container when game is inactive and no mode is selected thats visible on load
 // TODO: deal with error: otdp 'response_code: 1'... no trivia available. app should alert user and return them to otdp start page!!!
+// TODO: swap every 2nd &rdquo with &ldquo
 
 /* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
 
@@ -89,31 +90,32 @@ type OtdbParameters = {
 	type: string;
 };
 
-const startQuiz = function (data: JSON): void {
-	console.log(data);
-	$promptText.text(modeSelected as string);
+const startQuiz = function (data: any): void {
+	for (let i = 0; i < data.results.length; i++) {
+		console.log(data.results[i].question);
+		customLog(decodeURIComponent(data.results[i].question), 'info');
+	}
+	$promptText.text(decodeURIComponent(data.results[0].question));
 };
 
 const playTrivia = function (otdbParameters?: OtdbParameters): void {
 	let url: string;
 	if (otdbParameters) {
 		const { amount, category, difficulty, type } = otdbParameters;
-
 		url = `https://opentdb.com/api.php?amount=${amount}${
 			category !== 'any' ? `&category=${category}` : ''
 		}${difficulty !== 'any' ? `&difficulty=${difficulty}` : ''}${
 			type !== 'any' ? `&type=${type}` : ''
-		}`;
+		}&encode=url3986`;
 	} else {
 		url = 'https://cdn.aglty.io/3bikcueb/trivia/trivia-questions.json';
 	}
-
-	// let triviaData;
 
 	$.ajax({
 		url,
 	}).then(
 		(data) => {
+			console.log(url);
 			if (otdbParameters && data.response_code !== 0) {
 				gameOn = false;
 
@@ -133,6 +135,7 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 
 				$playButton.css('border', '1px solid goldenrod');
 			} else {
+				console.log(data);
 				startQuiz(data);
 			}
 		},
