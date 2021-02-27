@@ -90,12 +90,31 @@ type OtdbParameters = {
 	type: string;
 };
 
-const startQuiz = function (data: any): void {
-	for (let i = 0; i < data.results.length; i++) {
-		console.log(data.results[i].question);
+const runQuiz = function (data: any): void {
+	/* 	for (let i = 0; i < data.results.length; i++) {
 		customLog(decodeURIComponent(data.results[i].question), 'info');
-	}
-	$promptText.text(decodeURIComponent(data.results[0].question));
+	} */
+	// TODO: always decodeURIComponent(data.string) before doing anything
+	//! run once
+	//* create two new Player, player1 & player2
+	//* instantiate match = new Match(quiz: data, players: {p1: player1, p2, player2})
+	//* set match.max to calculateMax(match.data)
+	//* p1.score/match.max to $p1ScoreText.text(), p2.score/match.max to #p2ScoreText.text(), $p1ScoreContainer().show(), $p1ScoreContainer().show()
+	//* while questions.length > 0...
+	//! BEFORE lock
+	//* question to $promptText.text()
+	//* difficulty to #difficultyText.text()
+	//* if credit defined... credit to $creditText.text(), $creditContainer.show()
+	//* all answers to .response-container
+	//! AFTER lock
+	//* lockers score += Math.floor(credit <right/wrong> * difficulty <1|2|3>)
+	//* questions.pop();
+	//* creditContainer.hide();
+	//! AFTER loop
+	//* determine and set winner
+	//* $promptContainer.text(match.winner)
+	//* $player1Button.hide(), $player2Button.hide()
+	//* show wrong questions and right answers for each player in $responseContainer
 };
 
 const playTrivia = function (otdbParameters?: OtdbParameters): void {
@@ -108,7 +127,12 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 			type !== 'any' ? `&type=${type}` : ''
 		}&encode=url3986`;
 	} else {
-		url = 'https://cdn.aglty.io/3bikcueb/trivia/trivia-questions.json';
+		//* trivia-cases hosting links
+		// https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json
+		// https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json
+		// https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json
+
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
 	}
 
 	$.ajax({
@@ -136,7 +160,7 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 				$playButton.css('border', '1px solid goldenrod');
 			} else {
 				console.log(data);
-				startQuiz(data);
+				runQuiz(data);
 			}
 		},
 		(error) => {

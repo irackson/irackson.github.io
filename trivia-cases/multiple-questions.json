@@ -1,0 +1,77 @@
+{
+	"results": [
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "What percentage should be added to 40 to make it 50?",
+			"type": "multiple",
+			"correct_answer": "25%",
+			"incorrect_answers": ["15%", "75%", "80%"],
+			"credit": "single",
+			"case": ["dev", "multiple", "text", "single"]
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "text",
+			"question": "If x^2 = 100, what are the possible values for x?",
+			"type": "multiple",
+			"correct_answer": ["10", "-10", "0-(10i)^2"],
+			"incorrect_answers": ["(10i)^2"],
+			"credit": "partial",
+			"case": ["dev", "multiple", "text", "partial"]
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "link",
+			"question": "Which of the URLs link to a page not found?",
+			"type": "multiple",
+			"correct_answer": "https://jedi.mycohort.download/second-language/week-24/day-3/",
+			"incorrect_answers": [
+				"https://jedi.mycohort.download/coding-challenges#reverseupcasestring",
+				"www.mycohort.com",
+				"https://jedi.mycohort.download/frontend-fundamentals/week-3/day-3/labs/my-developer-skills-lab/"
+			],
+			"hint": "Familiarize yourself with the curriculum! Also, mycohort is currently for sale by HugeDomains, but nonetheless is a valid endpoint.",
+			"credit": "single",
+			"case": ["dev", "multiple", "link"]
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "img",
+			"question": "Whose personal GitHub account has the highest contribution count over the last year?",
+			"type": "multiple",
+			"correct_answer": "https://avatars.githubusercontent.com/u/52634838?s=460&u=aa05b8fcee5a38a55b56857aa379dce4887b25ca&v=4",
+			"incorrect_answers": [
+				"https://avatars.githubusercontent.com/u/58452223?s=460&u=79de1747e237fcac827d9842a93b638cc21802d7&v=4",
+				"https://avatars.githubusercontent.com/u/66440550?s=460&u=8efbed4567f07197b4ad49e0121f04173e2251f1&v=4",
+				"https://avatars.githubusercontent.com/u/936204?s=460&u=1c75ba3339476e753d3a6f8f067b1057220a4171&v=4",
+				"https://avatars.githubusercontent.com/u/17891125?s=460&u=abf4021515edef127878f03b5d5ccb3c6fc31399&v=4"
+			],
+			"hint": "Stalk them for yourself and see!",
+			"credit": "single",
+			"case": ["dev", "multiple", "img"]
+		},
+		{
+			"category": "Politics",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Due%20to%20the%20Nagoya%20Resolution%2C%20China%20agreed%20to%20allow%20Taiwan%20to%20compete%20separately%20in%20international%20sporting%20events%20under%20what%20name%3F",
+			"correct_answer": "Chinese%20Taipei",
+			"incorrect_answers": [
+				"Chinese%20Taiwan",
+				"Republic%20of%20Taiwan",
+				"Republic%20of%20Taipei%20"
+			],
+			"case": ["otdb", "multiple", "medium"]
+		},
+		{
+			"category": "Politics",
+			"type": "multiple",
+			"difficulty": "easy",
+			"question": "How%20many%20people%20are%20in%20the%20U.S.%20House%20of%20Representatives%3F",
+			"correct_answer": "435",
+			"incorrect_answers": ["260", "415", "50"],
+			"case": ["otdb", "multiple", "easy"]
+		}
+	]
+}

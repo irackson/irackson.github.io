@@ -6,7 +6,8 @@
 			"question": "If x^2 = 100, what are the possible values for x?",
 			"type": "multiple",
 			"correct_answer": ["10", "-10", "0-(10i)^2"],
-			"incorrect_answers": ["(10i)^2"]
+			"incorrect_answers": ["(10i)^2"],
+			"credit": "partial"
 		},
 		{
 			"difficulty": "medium",
@@ -14,7 +15,8 @@
 			"question": "What percentage should be added to 40 to make it 50?",
 			"type": "multiple",
 			"correct_answer": "25%",
-			"incorrect_answers": ["15%", "75%", "80%"]
+			"incorrect_answers": ["15%", "75%", "80%"],
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -27,7 +29,8 @@
 				"www.mycohort.com",
 				"https://jedi.mycohort.download/frontend-fundamentals/week-3/day-3/labs/my-developer-skills-lab/"
 			],
-			"hint": "Familiarize yourself with the curriculum! Also, mycohort is currently for sale by HugeDomains, but nonetheless is a valid endpoint."
+			"hint": "Familiarize yourself with the curriculum! Also, mycohort is currently for sale by HugeDomains, but nonetheless is a valid endpoint.",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -41,7 +44,8 @@
 				"https://avatars.githubusercontent.com/u/936204?s=460&u=1c75ba3339476e753d3a6f8f067b1057220a4171&v=4",
 				"https://avatars.githubusercontent.com/u/17891125?s=460&u=abf4021515edef127878f03b5d5ccb3c6fc31399&v=4"
 			],
-			"hint": "Stalk them for yourself and see!"
+			"hint": "Stalk them for yourself and see!",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -49,7 +53,8 @@
 			"question": "Order these 'mouthwash' shades from lightest to darkest.",
 			"type": "rank",
 			"correct_answer": ["#E6FFFE", "#87FEF8", "#28FEF3", "#01C5BB"],
-			"hint": "Get your eyes checked!"
+			"hint": "Get your eyes checked!",
+			"credit": "single"
 		},
 		{
 			"difficulty": "medium",
@@ -57,14 +62,16 @@
 			"question": "Order these 'titanium' shades from darkest to lightest.",
 			"type": "rank",
 			"correct_answer": ["#B6AFA9", "#CAC5C1", "#DFDCD9", "#F3F2F1"],
-			"hint": "Ask your dog!"
+			"hint": "Ask your dog!",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
 			"datatype": "color",
 			"question": "Order these 'conch' shades from lightest to darkest.",
 			"type": "rank",
-			"correct_answer": ["#F6EFEF", "#E9D7D8", "#DDC0C1", "#D0A9AA"]
+			"correct_answer": ["#F6EFEF", "#E9D7D8", "#DDC0C1", "#D0A9AA"],
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -72,7 +79,8 @@
 			"question": "Select the two identical colors.",
 			"type": "grid",
 			"correct_answer": ["#4DD2FF", "#4DD2FF"],
-			"incorrect_answers": ["#EA6F4B", "#EA7256", "#AC9090", "#D0C0C0"]
+			"incorrect_answers": ["#EA6F4B", "#EA7256", "#AC9090", "#D0C0C0"],
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -89,7 +97,8 @@
 				"#8B2252",
 				"#8B2252"
 			],
-			"hint": "'voiletred4' is not, and never will be, the same color as 'plumpudding'"
+			"hint": "'voiletred4' is not, and never will be, the same color as 'plumpudding'",
+			"credit": "single"
 		},
 		{
 			"difficulty": "medium",
@@ -104,7 +113,8 @@
 				"ECMAScript 2017",
 				"BigInt, ??, globalThis"
 			],
-			"hint": "No one can help you. This will always be confusing."
+			"hint": "No one can help you. This will always be confusing.",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -121,7 +131,8 @@
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "blank",
 			"expression": "\"You can't have your (cake) and (eat) it too.\"",
-			"hint": "\"Everyone knows You can't have your eat and cake it too\""
+			"hint": "\"Everyone knows You can't have your eat and cake it too\"",
+			"credit": "single"
 		},
 		{
 			"difficulty": "medium",
@@ -129,7 +140,8 @@
 			"question": "Complete the proverb by filling in the blank appropriately.",
 			"type": "blank",
 			"expression": "\"A rolling stone gathers no (moss).\"",
-			"hint": "Think about what it is that stones that are rolling do gather."
+			"hint": "Think about what it is that stones that are rolling do gather.",
+			"credit": "single"
 		},
 		{
 			"difficulty": "medium",
@@ -137,7 +149,8 @@
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "blank",
 			"expression": "\"An (ounce) of protection is worth a (pound) of cure.\"",
-			"hint": "1 lb = 16 oz"
+			"hint": "1 lb = 16 oz",
+			"credit": "partial"
 		},
 		{
 			"difficulty": "hard",
@@ -145,7 +158,8 @@
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "blank",
 			"expression": "\"The grass is greener on the other side (of) (the) (fence).\"",
-			"hint": "The second missing word is \"the\""
+			"hint": "The second missing word is \"the\"",
+			"credit": "partial"
 		},
 		{
 			"difficulty": "medium",
@@ -157,7 +171,8 @@
 				"https://giphy.com/embed/J1ugoU2Dis6DWWAoga",
 				"https://giphy.com/embed/Lb3m6dxZRHkbhRgwIa",
 				"https://giphy.com/embed/3dbLNOL4qdvLZqPK3M"
-			]
+			],
+			"credit": "single"
 		},
 		{
 			"difficulty": "hard",
@@ -177,7 +192,8 @@
 				"https://giphy.com/embed/hmpqVzwPARTmo",
 				"https://giphy.com/embed/12J1QXPeD10z9m"
 			],
-			"hint": "Only four are correct."
+			"hint": "Only four are correct.",
+			"credit": "partial"
 		},
 		{
 			"difficulty": "medium",
@@ -206,7 +222,8 @@
 				"adeem",
 				"alarm"
 			],
-			"reference": "https://word.tips/unscramble/_/words-start-with/A/words-end-in/M/length/5"
+			"reference": "https://word.tips/unscramble/_/words-start-with/A/words-end-in/M/length/5",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -229,7 +246,8 @@
 				"prig",
 				"prog"
 			],
-			"reference": "https://word.tips/unscramble/_/words-start-with/P/words-end-in/G/length/4"
+			"reference": "https://word.tips/unscramble/_/words-start-with/P/words-end-in/G/length/4",
+			"credit": "single"
 		},
 		{
 			"difficulty": "easy",
@@ -244,7 +262,8 @@
 				["g"]
 			],
 			"correct_answer": ["glugg", "glogg", "gulag", "going"],
-			"reference": "https://word.tips/unscramble/_/words-start-with/G/words-end-in/G/length/5"
+			"reference": "https://word.tips/unscramble/_/words-start-with/G/words-end-in/G/length/5",
+			"credit": "single"
 		}
 	]
 }

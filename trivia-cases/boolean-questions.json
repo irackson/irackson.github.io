@@ -1,0 +1,61 @@
+{
+	"results": [
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "In the developer's opinion, Sass is way better than CSS, jQuery beats vanilla DOM manipulation any day, and TypeScript is only script.",
+			"type": "boolean",
+			"correct_answer": "True",
+			"incorrect_answers": ["False"],
+			"credit": "single",
+			"case": ["dev", "boolean", "easy"]
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Video streaming website YouTube was purchased in it's entirety by Facebook for US$1.65 billion in stock.",
+			"type": "boolean",
+			"correct_answer": "False",
+			"incorrect_answers": ["True"],
+			"credit": "single",
+			"case": ["dev", "boolean", "medium"]
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "text",
+			"question": "You can legally drink alcohol while driving in Mississippi.",
+			"type": "boolean",
+			"correct_answer": "True",
+			"incorrect_answers": ["False"],
+			"credit": "single",
+			"case": ["dev", "boolean", "hard"]
+		},
+		{
+			"category": "General%20Knowledge",
+			"type": "boolean",
+			"difficulty": "easy",
+			"question": "The%20Lego%20Group%20was%20founded%20in%201932.",
+			"correct_answer": "True",
+			"incorrect_answers": ["False"],
+			"case": ["otdb", "boolean", "easy"]
+		},
+		{
+			"category": "General%20Knowledge",
+			"type": "boolean",
+			"difficulty": "medium",
+			"question": "The%20sum%20of%20all%20the%20numbers%20on%20a%20roulette%20wheel%20is%20666.",
+			"correct_answer": "True",
+			"incorrect_answers": ["False"],
+			"case": ["otdb", "boolean", "medium"]
+		},
+		{
+			"category": "General%20Knowledge",
+			"type": "boolean",
+			"difficulty": "hard",
+			"question": "Spoon%20theory%20is%20a%20theory%2C%20utilizing%20%22Spoons%22%20as%20a%20metaphor%20for%20energy%20they%20can%20use%20in%20a%20day.",
+			"correct_answer": "True",
+			"incorrect_answers": ["False"],
+			"case": ["otdb", "boolean", "hard"]
+		}
+	]
+}
