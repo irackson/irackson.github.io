@@ -62,7 +62,13 @@ customLog(
 const $playButton = $('#play-button');
 
 const $inactiveGameContainer = $('.inactive-game-container');
+
 const $activeGameContainer = $('.active-game-container'); // hidden onload
+const $p1ScoreText = $('#player-1-points');
+const $p2ScoreText = $('#player-2-points');
+const $maxPointsText = $('.max-points');
+const $divisionSpacing = $('.division-spacing');
+
 const $player1Button = $('#player-1-button'); // hidden onload
 const $player2Button = $('#player-2-button'); // hidden onload
 
@@ -93,16 +99,24 @@ type OtdbParameters = {
 	type: string;
 };
 
-const runQuiz = function (data: any): void {
+const makeBoolean = (): JQuery => {
+	const $booleanEl = $('<div/>');
+	$booleanEl.html(
+		'<div class="button boolean-button" id="true-select">TRUE</div><div class="button boolean-button" id="false-select">FALSE</div>'
+	);
+	return $booleanEl;
+};
+
+const runQuiz = function (triviaData: []): void {
 	/* 	for (let i = 0; i < data.results.length; i++) {
 		customLog(decodeURIComponent(data.results[i].question), 'info');
 	} */
 	// TODO: always decodeURIComponent(data.string) before doing anything
 	//! run once
-	//* create two new Player, player1 & player2
-	//* instantiate match = new Match(quiz: data, players: {p1: player1, p2, player2})
-	//* set match.max to calculateMax(match.data)
-	//* p1.score/match.max to $p1ScoreText.text(), p2.score/match.max to #p2ScoreText.text(), $p1ScoreContainer().show(), $p1ScoreContainer().show()
+	// create two new Player, player1 & player2
+	// instantiate match = new Match(quiz: data, players: {p1: player1, p2, player2})
+	// set match.max to calculateMax(match.data)
+	// p1.score/match.max to $p1ScoreText.text(), p2.score/match.max to #p2ScoreText.text(), $p1ScoreContainer().show(), $p1ScoreContainer().show()
 	//* while questions.length > 0...
 	//! BEFORE lock
 	//* question to $promptText.text()
@@ -120,15 +134,51 @@ const runQuiz = function (data: any): void {
 	//* show wrong questions and right answers for each player in $responseContainer
 
 	/* CODE HERE */
-	const player1 = new Player(0);
+	const player1 = new Player('Player One', 0);
+	const player2 = new Player('Player Two', 0);
+	const match = new Match(triviaData, { p1: player1, p2: player2 });
 
-	const player2 = new Player(0);
+	$p1ScoreText.text(player1.getScore());
+	$p2ScoreText.text(player2.getScore());
+	$maxPointsText.text(match.getMaxScore());
 
-	const match = new Match(player1, player2);
+	let spaceString = '';
+	for (let i = 0; i < match.getMaxScore().toString().split('').length; i++) {
+		spaceString += '&nbsp;&nbsp;';
+	}
+	$divisionSpacing.html(spaceString);
 
-	player1.setScore(5);
-	player2.setScore(5);
-	console.log(match.compareScores());
+	//* for each round...
+	const round = match.getCurrentRoundData();
+	/* eslint-disable @typescript-eslint/no-unused-vars */
+	const {
+		type, // boolean, multiple, rank, grid, blank, dropdown
+		difficulty, // easy --> 1 point, medium --> 2, hard --> 3
+		question, // prompt string
+		correct_answer: correctAnswer, // string if 1, arr if many
+		incorrect_answers: incorrectAnswers, // always arr
+		expression, // ! key only on type: blank
+		options, // ! key only on type: dropdown
+		datatype, // ? optional key. assume 'text' if undefined. can be text, link, img, color
+		credit, // ? optional key indicating partial credit. assume single (no partial) if undefined
+		case: testingCase, // ? optional key on questions used to test code
+		hint, // ? optional key on some questions
+		reference, // ? optional key on some questions for answer source
+		category, // ? optional key describing category
+	} = round;
+	/* eslint-enable @typescript-eslint/no-unused-vars */
+
+	$promptText.text(decodeURIComponent(question));
+
+	let $responseEl = $('<div/>');
+	if (type === 'boolean') {
+		$responseEl = makeBoolean();
+	} else if (type === 'multiple') {
+		// $responseEl = makeMultiple()
+		$responseEl.text('on to makeMultiple()');
+	}
+
+	$responseContainer.append($responseEl.eq(0));
 };
 
 const playTrivia = function (otdbParameters?: OtdbParameters): void {
@@ -153,7 +203,6 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 		url,
 	}).then(
 		(data) => {
-			console.log(url);
 			if (otdbParameters && data.response_code !== 0) {
 				gameOn = false;
 
@@ -173,8 +222,7 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 
 				$playButton.css('border', '1px solid goldenrod');
 			} else {
-				console.log(data);
-				runQuiz(data);
+				runQuiz(data.results);
 			}
 		},
 		(error) => {

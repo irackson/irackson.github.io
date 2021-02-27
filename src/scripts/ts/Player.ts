@@ -1,8 +1,15 @@
 export default class Player {
+	private name: string;
+
 	private score: number;
 
-	constructor(startingScore: number) {
+	constructor(playerName: string, startingScore: number) {
+		this.name = playerName;
 		this.score = startingScore;
+	}
+
+	getName() {
+		return this.name;
 	}
 
 	getScore() {
