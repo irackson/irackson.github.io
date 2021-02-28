@@ -41,9 +41,6 @@ customLog(
 //!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
 //!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
 
-//* use font-awesome
-//* consider bootstrap
-
 // TODO: each player has their own submit button
 // TODO: timed, with option to choose seconds/question vs. not timed
 // TODO: click to reveal hint if available
@@ -91,6 +88,10 @@ const $responseContainer = $('.response-container'); // hidden onload
 /* eslint-enable @typescript-eslint/no-unused-vars */
 let gameOn: boolean = false;
 let modeSelected: string | undefined;
+let match: Match;
+let $responseEl = $('<div/>');
+
+/* game globals */
 
 type OtdbParameters = {
 	amount: string;
@@ -100,11 +101,44 @@ type OtdbParameters = {
 };
 
 const makeBoolean = (): JQuery => {
-	const $booleanEl = $('<div/>');
-	$booleanEl.html(
-		'<div class="button boolean-button" id="true-select">TRUE</div><div class="button boolean-button" id="false-select">FALSE</div>'
+	const $booleanEl = $('<div class="boolean-container"/>');
+
+	const $booleanButtonContainer = $(
+		'<div class="boolean-button-container"></div>'
 	);
+	const $falseEl = $(
+		'<div class="button boolean-button" id="false-select">FALSE</div>'
+	);
+	const $trueEl = $(
+		'<div class="button boolean-button" id="true-select">TRUE</div>'
+	);
+
+	$falseEl.on('click', function (e) {
+		e.preventDefault();
+		$trueEl.css('border', '1px solid black');
+		$falseEl.css('border', '2px solid silver');
+
+		match.response = 'False';
+	});
+
+	$trueEl.on('click', function (e) {
+		e.preventDefault();
+		$falseEl.css('border', '1px solid black');
+		$trueEl.css('border', '2px solid silver');
+
+		match.response = 'True';
+	});
+
+	$booleanButtonContainer.append($falseEl).append($trueEl);
+	$booleanEl.append($booleanButtonContainer);
 	return $booleanEl;
+};
+
+const makeMultiple = (): JQuery => {
+	const $multipleEl = $(
+		'<div class="multiple-container"><p>multiple choices here</p></div>'
+	);
+	return $multipleEl;
 };
 
 const runQuiz = function (triviaData: []): void {
@@ -136,22 +170,22 @@ const runQuiz = function (triviaData: []): void {
 	/* CODE HERE */
 	const player1 = new Player('Player One', 0);
 	const player2 = new Player('Player Two', 0);
-	const match = new Match(triviaData, { p1: player1, p2: player2 });
+	match = new Match(triviaData, { p1: player1, p2: player2 });
 
 	$p1ScoreText.text(player1.getScore());
 	$p2ScoreText.text(player2.getScore());
-	$maxPointsText.text(match.getMaxScore());
+	$maxPointsText.text(match.maxScore);
 
 	let spaceString = '';
-	for (let i = 0; i < match.getMaxScore().toString().split('').length; i++) {
+	for (let i = 0; i < match.maxScore.toString().split('').length; i++) {
 		spaceString += '&nbsp;&nbsp;';
 	}
 	$divisionSpacing.html(spaceString);
 
 	//* for each round...
-	const round = match.getCurrentRoundData();
 	/* eslint-disable @typescript-eslint/no-unused-vars */
-	const {
+
+	let {
 		type, // boolean, multiple, rank, grid, blank, dropdown
 		difficulty, // easy --> 1 point, medium --> 2, hard --> 3
 		question, // prompt string
@@ -165,20 +199,71 @@ const runQuiz = function (triviaData: []): void {
 		hint, // ? optional key on some questions
 		reference, // ? optional key on some questions for answer source
 		category, // ? optional key describing category
-	} = round;
+	} = match.currentRound;
+
+	const updateData: () => void = function (): void {
+		type = match.currentRound.type;
+		difficulty = match.currentRound.difficulty;
+		question = match.currentRound.question;
+		correctAnswer = match.currentRound.correct_answer;
+		incorrectAnswers = match.currentRound.incorrect_answers;
+		expression = match.currentRound.expression;
+		options = match.currentRound.options;
+		datatype = match.currentRound.datatype;
+		credit = match.currentRound.credit;
+		testingCase = match.currentRound.case;
+		hint = match.currentRound.hint;
+		reference = match.currentRound.reference;
+		category = match.currentRound.category;
+	};
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
-	$promptText.text(decodeURIComponent(question));
+	const updateDom: () => void = function (): void {
+		$responseEl.detach();
+		$p1ScoreText.text(match.player1.getScore());
+		$p2ScoreText.text(match.player2.getScore());
+		$promptText.text(decodeURIComponent(question));
 
-	let $responseEl = $('<div/>');
-	if (type === 'boolean') {
-		$responseEl = makeBoolean();
-	} else if (type === 'multiple') {
-		// $responseEl = makeMultiple()
-		$responseEl.text('on to makeMultiple()');
-	}
+		if (type === 'boolean') {
+			$responseEl = makeBoolean();
+		} else if (type === 'multiple') {
+			$responseEl = makeMultiple();
+		}
+		$responseContainer.append($responseEl.eq(0));
+	};
+	updateDom();
 
-	$responseContainer.append($responseEl.eq(0));
+	$player1Button.on('click', function (e) {
+		e.preventDefault();
+		if (match.response !== null) {
+			$player2Button.css('color', 'white');
+			const pointsWon = match.processResponse(player1.getName());
+			if (pointsWon === 0) {
+				$player1Button.css('color', 'red');
+			} else {
+				$player1Button.css('color', 'greenyellow');
+			}
+
+			updateData();
+			updateDom();
+		}
+	});
+
+	$player2Button.on('click', function (e) {
+		e.preventDefault();
+		if (match.response !== null) {
+			$player1Button.css('color', 'white');
+			const pointsWon = match.processResponse(player2.getName());
+			if (pointsWon === 0) {
+				$player2Button.css('color', 'red');
+			} else {
+				$player2Button.css('color', 'greenyellow');
+			}
+
+			updateData();
+			updateDom();
+		}
+	});
 };
 
 const playTrivia = function (otdbParameters?: OtdbParameters): void {
@@ -192,11 +277,10 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 		}&encode=url3986`;
 	} else {
 		//* trivia-cases hosting links
-		// https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json
-		// https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json
-		// https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json
-
-		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
+		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json'
+		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json'
+		url =
+			'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
 	}
 
 	$.ajax({
@@ -292,7 +376,9 @@ $playButton.on('click', function (e) {
 
 	if (gameOn) {
 		// reset to reload state
-
+		$responseEl.detach();
+		$player1Button.css('color', 'white');
+		$player2Button.css('color', 'white');
 		$player1Button.hide();
 		$player2Button.hide();
 		$activeGameContainer.hide();

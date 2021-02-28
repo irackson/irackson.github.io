@@ -23,32 +23,68 @@ const calculateMax: (triviaData: any[]) => number = function (
 };
 
 export default class Match {
-	currentRound: number;
+	gameOver: boolean;
 
-	rounds: [];
+	currentRound: any;
+
+	rounds: any[];
 
 	player1: Player;
 
 	player2: Player;
 
+	response: string | string[] | null;
+
 	maxScore: number;
 
-	constructor(triviaData: [], players: { p1: Player; p2: Player }) {
-		this.currentRound = 0;
-		this.rounds = triviaData;
+	constructor(uglyData: any[], players: { p1: Player; p2: Player }) {
+		const prettyData: any[] = [];
+		for (let i = 0; i < uglyData.length; i++) {
+			prettyData.push(JSON.parse(JSON.stringify(uglyData[i])));
+		}
+		this.maxScore = calculateMax(prettyData);
+		this.currentRound = prettyData.shift();
+		if (this.currentRound === undefined) {
+			this.gameOver = true;
+		} else {
+			this.gameOver = false;
+		}
+		this.rounds = prettyData;
+
 		this.player1 = players.p1;
 		this.player2 = players.p2;
-
-		this.maxScore = calculateMax(triviaData);
+		this.response = null;
 	}
 
-	getCurrentRoundData() {
-		const round = this.rounds[this.currentRound];
-		return JSON.parse(JSON.stringify(round));
-	}
+	processResponse(lockersName: string): number {
+		let pointsWon = 0;
+		let multiplier = 0;
+		const validRatio = 1; //! handle partial credit (change to let)
+		if (this.currentRound.difficulty === 'easy') {
+			multiplier = 1;
+		} else if (this.currentRound.difficulty === 'medium') {
+			multiplier = 2;
+		} else if (this.currentRound.difficulty === 'hard') {
+			multiplier = 3;
+		}
 
-	getMaxScore(): number {
-		return this.maxScore;
+		if (this.response === this.currentRound.correct_answer) {
+			pointsWon = validRatio * multiplier;
+		}
+
+		if (this.player1.getName() === lockersName) {
+			this.player1.setScore(this.player1.getScore() + pointsWon);
+		}
+		if (this.player2.getName() === lockersName) {
+			this.player2.setScore(this.player2.getScore() + pointsWon);
+		}
+		this.currentRound = this.rounds.shift();
+		if (this.currentRound === undefined) {
+			this.gameOver = true;
+		}
+		this.response = null;
+
+		return pointsWon;
 	}
 
 	getLeader(): string | null {
