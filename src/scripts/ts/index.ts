@@ -61,10 +61,17 @@ const $playButton = $('#play-button');
 const $inactiveGameContainer = $('.inactive-game-container');
 
 const $activeGameContainer = $('.active-game-container'); // hidden onload
+const $ratioContainer = $('.ratio-container');
 const $p1ScoreText = $('#player-1-points');
 const $p2ScoreText = $('#player-2-points');
 const $maxPointsText = $('.max-points');
 const $divisionSpacing = $('.division-spacing');
+const $statContainer = $('.stat-container');
+const $resultStatsContainer = $('result-stats-container');
+const $winnerText = $('#winner-text');
+const $questionStatsContainer = $('.question-stats-container');
+const $questionNumberText = $('#question-number-text');
+const $questionDifficultyText = $('#question-difficulty-text');
 
 const $player1Button = $('#player-1-button'); // hidden onload
 const $player2Button = $('#player-2-button'); // hidden onload
@@ -89,6 +96,9 @@ const $responseContainer = $('.response-container'); // hidden onload
 let gameOn: boolean = false;
 let modeSelected: string | undefined;
 let match: Match;
+let player1: Player;
+let player2: Player;
+
 let $responseEl = $('<div/>');
 
 /* game globals */
@@ -168,8 +178,8 @@ const runQuiz = function (triviaData: []): void {
 	//* show wrong questions and right answers for each player in $responseContainer
 
 	/* CODE HERE */
-	const player1 = new Player('Player One', 0);
-	const player2 = new Player('Player Two', 0);
+	player1 = new Player('Player One', 0);
+	player2 = new Player('Player Two', 0);
 	match = new Match(triviaData, { p1: player1, p2: player2 });
 
 	$p1ScoreText.text(player1.getScore());
@@ -181,6 +191,9 @@ const runQuiz = function (triviaData: []): void {
 		spaceString += '&nbsp;&nbsp;';
 	}
 	$divisionSpacing.html(spaceString);
+
+	customLog('new match started', 'info');
+	console.log(match);
 
 	//* for each round...
 	/* eslint-disable @typescript-eslint/no-unused-vars */
@@ -218,11 +231,41 @@ const runQuiz = function (triviaData: []): void {
 	};
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
+	function handleGameOver() {
+		console.log('handleGameListener called');
+		$questionStatsContainer.hide();
+		$promptText.text('Game Over!');
+		$responseContainer.fadeOut();
+		$player1Button.fadeOut();
+		$player2Button.fadeOut();
+		$p1ScoreText.text(player1.getScore());
+		$p2ScoreText.text(player2.getScore());
+		const winner: string | null = match.getLeader();
+
+		if (winner === null) {
+			$winnerText.text('Game ends in tie.');
+		} else {
+			$winnerText.text(`${winner} wins!`);
+		}
+		$resultStatsContainer.show();
+	}
+
 	const updateDom: () => void = function (): void {
+		if (match.rounds.length === 0) {
+			console.log('handleGameOver listener added');
+
+			$player1Button.off();
+			$player2Button.off();
+			$player1Button.on('click', () => handleGameOver());
+			$player2Button.on('click', () => handleGameOver());
+		}
+
 		$responseEl.detach();
 		$p1ScoreText.text(match.player1.getScore());
 		$p2ScoreText.text(match.player2.getScore());
 		$promptText.text(decodeURIComponent(question));
+		$questionNumberText.text('c/t'); // TODO
+		$questionDifficultyText.text(decodeURIComponent(difficulty));
 
 		if (type === 'boolean') {
 			$responseEl = makeBoolean();
@@ -246,7 +289,15 @@ const runQuiz = function (triviaData: []): void {
 
 			updateData();
 			updateDom();
+
+			// if (match.rounds.length === 0) {
+			// 	$promptText.text('Game Over!');
+			// 	$responseContainer.fadeOut();
+			// }
 		}
+		// else if (match.rounds.length === 0) {
+
+		// }
 	});
 
 	$player2Button.on('click', function (e) {
@@ -277,10 +328,10 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 		}&encode=url3986`;
 	} else {
 		//* trivia-cases hosting links
-		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json'
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
 		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json'
-		url =
-			'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
+		// url =
+		// 	'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
 	}
 
 	$.ajax({
@@ -376,7 +427,15 @@ $playButton.on('click', function (e) {
 
 	if (gameOn) {
 		// reset to reload state
+
+		$winnerText.text('');
+		$resultStatsContainer.hide();
+		$questionNumberText.text('');
+		$questionDifficultyText.text('');
+		$questionStatsContainer.show();
 		$responseEl.detach();
+		$player1Button.off();
+		$player2Button.off();
 		$player1Button.css('color', 'white');
 		$player2Button.css('color', 'white');
 		$player1Button.hide();

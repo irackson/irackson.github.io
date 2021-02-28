@@ -23,8 +23,6 @@ const calculateMax: (triviaData: any[]) => number = function (
 };
 
 export default class Match {
-	gameOver: boolean;
-
 	currentRound: any;
 
 	rounds: any[];
@@ -44,11 +42,7 @@ export default class Match {
 		}
 		this.maxScore = calculateMax(prettyData);
 		this.currentRound = prettyData.shift();
-		if (this.currentRound === undefined) {
-			this.gameOver = true;
-		} else {
-			this.gameOver = false;
-		}
+
 		this.rounds = prettyData;
 
 		this.player1 = players.p1;
@@ -79,15 +73,15 @@ export default class Match {
 			this.player2.setScore(this.player2.getScore() + pointsWon);
 		}
 		this.currentRound = this.rounds.shift();
-		if (this.currentRound === undefined) {
-			this.gameOver = true;
-		}
+
 		this.response = null;
 
 		return pointsWon;
 	}
 
 	getLeader(): string | null {
+		console.log(this.player1.getScore());
+		console.log(this.player2.getScore());
 		if (this.player1.getScore() > this.player2.getScore()) {
 			return this.player1.getName();
 		}

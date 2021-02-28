@@ -192,7 +192,38 @@ main {
 
 				.stat-container {
 					height: 35%;
-					background-color: rgb(103, 162, 196);
+					// overflow: hidden;
+					font-family: 'IM Fell English', serif;
+
+					.result-stats-container {
+						height: 100%;
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-size: 0.7em;
+
+						p {
+							margin: 0;
+							padding: 0;
+						}
+					}
+
+					.question-stats-container {
+						height: 100%;
+						width: 100%;
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						font-size: 0.5em;
+
+						p {
+							margin-top: 0;
+							margin-bottom: 0;
+							padding-top: 0;
+							padding-bottom: 0;
+						}
+					}
 				}
 			}
 		}
