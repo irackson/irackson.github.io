@@ -56,6 +56,7 @@ customLog(
 /* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 const $playButton = $('#play-button');
 
 const $inactiveGameContainer = $('.inactive-game-container');
@@ -334,8 +335,8 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 		}&encode=url3986`;
 	} else {
 		//* trivia-cases hosting links
-		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
-		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json'
+		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json';
 		// url =
 		// 	'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
 	}
