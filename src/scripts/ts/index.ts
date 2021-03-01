@@ -125,7 +125,7 @@ const makeBoolean = (): JQuery => {
 		$player1Button.css('color', 'white');
 		$player2Button.css('color', 'white');
 
-		match.response = 'False';
+		match.response = ['False'];
 	});
 
 	$trueEl.on('click', function (e) {
@@ -135,7 +135,7 @@ const makeBoolean = (): JQuery => {
 		$player1Button.css('color', 'white');
 		$player2Button.css('color', 'white');
 
-		match.response = 'True';
+		match.response = ['True'];
 	});
 
 	$booleanButtonContainer.append($falseEl).append($trueEl);
@@ -143,7 +143,7 @@ const makeBoolean = (): JQuery => {
 	return $booleanEl;
 };
 
-const makeMultiple = (options: string[]): JQuery => {
+const makeMultiple = (options: string[], credit: string): JQuery => {
 	// TODO: toggle border color on click
 	// TODO: add to response if border silver, remove if black
 
@@ -178,9 +178,24 @@ const makeMultiple = (options: string[]): JQuery => {
 		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$boxEl.on('click', function (e) {
 			e.preventDefault();
-			console.log(`box ${i}: ${options[i]}`);
-
-			match.response = options[i];
+			$player1Button.css('color', 'white');
+			$player2Button.css('color', 'white');
+			if (credit === 'single') {
+				$('.box-container').css('border', '1px solid black');
+				$boxEl.css('border', '2px solid silver');
+				match.response = [options[i]];
+			} else {
+				const currentBorderColor = $boxEl.css('borderColor');
+				console.log(typeof currentBorderColor);
+				if (currentBorderColor === 'rgb(0, 0, 0)') {
+					$boxEl.css('border', '2px solid silver');
+					match.response.push(options[i]);
+				} else {
+					$boxEl.css('border', '1px solid black');
+					match.response = match.response.filter((el) => el !== options[i]);
+				}
+			}
+			console.log(match.response);
 		});
 		$boxesContainer.append($boxEl);
 	}
@@ -226,53 +241,59 @@ const runQuiz = function (triviaData: []): void {
 	} = match.currentRound;
 
 	function cleanData(): void {
+		if (datatype === undefined) {
+			datatype = 'text';
+		}
+
+		if (credit === undefined) {
+			credit = 'single';
+		}
+
 		try {
 			question = decodeURIComponent(question);
 
 			if (typeof correctAnswer === 'string') {
-				correctAnswer = decodeURIComponent(correctAnswer);
+				try {
+					correctAnswer = decodeURIComponent(correctAnswer);
+				} catch (error) {
+					console.log(`${correctAnswer} decode error`, 'info');
+					console.log(error, 'error');
+				}
+				correctAnswer = [correctAnswer];
 			} else {
 				for (let i = 0; i < correctAnswer.length; i++) {
-					correctAnswer[i] = decodeURIComponent(correctAnswer[i]);
+					try {
+						correctAnswer[i] = decodeURIComponent(correctAnswer[i]);
+					} catch (error) {
+						customLog(`${correctAnswer[i]} decode error`, 'info');
+						customLog(error, 'error');
+					}
 				}
 			}
 
 			for (let i = 0; i < incorrectAnswers.length; i++) {
-				incorrectAnswers[i] = decodeURIComponent(incorrectAnswers[i]);
-			}
-
-			if (datatype === undefined) {
-				datatype = 'text';
-			}
-
-			if (credit === undefined) {
-				credit = 'single';
+				try {
+					incorrectAnswers[i] = decodeURIComponent(incorrectAnswers[i]);
+				} catch (error) {
+					customLog(`${incorrectAnswers[i]} decode error`, 'info');
+					customLog(error, 'error');
+				}
 			}
 
 			if (category !== undefined) {
-				category = decodeURIComponent(category);
+				try {
+					category = decodeURIComponent(category);
+				} catch (error) {
+					customLog(`${category} decode error`, 'info');
+					customLog(error, 'error');
+				}
 			}
 		} catch (error) {
-			console.log(error);
+			customLog('cleanData() error', 'info');
+			customLog(error, 'error');
 		}
 	}
 	cleanData();
-
-	console.table([
-		type,
-		difficulty,
-		question,
-		correctAnswer,
-		incorrectAnswers,
-		expression,
-		options,
-		datatype,
-		credit,
-		testingCase,
-		hint,
-		reference,
-		category,
-	]);
 
 	const updateData: () => void = function (): void {
 		type = match.currentRound.type;
@@ -290,22 +311,6 @@ const runQuiz = function (triviaData: []): void {
 		category = match.currentRound.category;
 
 		cleanData();
-
-		console.table([
-			type,
-			difficulty,
-			question,
-			correctAnswer,
-			incorrectAnswers,
-			expression,
-			options,
-			datatype,
-			credit,
-			testingCase,
-			hint,
-			reference,
-			category,
-		]);
 	};
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
@@ -350,24 +355,45 @@ const runQuiz = function (triviaData: []): void {
 			$responseEl = makeBoolean();
 		} else if (type === 'multiple') {
 			$responseEl = makeMultiple(
-				_.shuffle(_.concat(correctAnswer, incorrectAnswers))
+				_.shuffle(_.concat(correctAnswer, incorrectAnswers)),
+				credit
 			); // TODO: write function optionsJoinMix(correctAnswer: string | string[], incorrectAnswers: string[]) => string[]
 		}
 		$responseContainer.append($responseEl.eq(0));
 	};
 	updateDom();
 
+	console.log(`correctAnswers: ${correctAnswer}`);
+	console.log(`incorrectAnswers: ${incorrectAnswers}`);
+
 	$player1Button.on('click', function (e) {
 		e.preventDefault();
 		if (match.response !== null) {
 			$player2Button.css('color', 'white');
-			const pointsWon = match.processResponse(player1.getName());
+			const pointsWon = match.processResponse(
+				player1.getName(),
+				correctAnswer,
+				incorrectAnswers,
+				credit
+			);
 			if (pointsWon === 0) {
 				$player1Button.css('color', 'red');
-			} else {
-				$player1Button.css('color', 'greenyellow');
-			}
+			} else if (pointsWon > 0) {
+				let multiplier = 0;
 
+				if (difficulty === 'easy') {
+					multiplier = 1;
+				} else if (difficulty === 'medium') {
+					multiplier = 2;
+				} else if (difficulty === 'hard') {
+					multiplier = 3;
+				}
+				if (pointsWon < multiplier) {
+					$player1Button.css('color', 'yellow');
+				} else {
+					$player1Button.css('color', 'green');
+				}
+			}
 			updateData();
 			updateDom();
 		}
@@ -377,13 +403,30 @@ const runQuiz = function (triviaData: []): void {
 		e.preventDefault();
 		if (match.response !== null) {
 			$player1Button.css('color', 'white');
-			const pointsWon = match.processResponse(player2.getName());
+			const pointsWon = match.processResponse(
+				player2.getName(),
+				correctAnswer,
+				incorrectAnswers,
+				credit
+			);
 			if (pointsWon === 0) {
 				$player2Button.css('color', 'red');
-			} else {
-				$player2Button.css('color', 'greenyellow');
-			}
+			} else if (pointsWon > 0) {
+				let multiplier = 0;
 
+				if (difficulty === 'easy') {
+					multiplier = 1;
+				} else if (difficulty === 'medium') {
+					multiplier = 2;
+				} else if (difficulty === 'hard') {
+					multiplier = 3;
+				}
+				if (pointsWon < multiplier) {
+					$player2Button.css('color', 'yellow');
+				} else {
+					$player2Button.css('color', 'green');
+				}
+			}
 			updateData();
 			updateDom();
 		}

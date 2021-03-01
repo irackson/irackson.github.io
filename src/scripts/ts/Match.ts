@@ -35,7 +35,7 @@ export default class Match {
 
 	player2: Player;
 
-	response: string | string[] | null;
+	response: string[];
 
 	maxScore: number;
 
@@ -53,13 +53,18 @@ export default class Match {
 
 		this.player1 = players.p1;
 		this.player2 = players.p2;
-		this.response = null;
+		this.response = [];
 	}
 
-	processResponse(lockersName: string): number {
+	processResponse(
+		lockersName: string,
+		correctAnswers: string[],
+		incorrectAnswers: string[],
+		credit: string
+	): number {
 		let pointsWon = 0;
 		let multiplier = 0;
-		const validRatio = 1; //! handle partial credit (change to let)
+
 		if (this.currentRound.difficulty === 'easy') {
 			multiplier = 1;
 		} else if (this.currentRound.difficulty === 'medium') {
@@ -68,9 +73,41 @@ export default class Match {
 			multiplier = 3;
 		}
 
-		if (this.response === this.currentRound.correct_answer) {
-			pointsWon = validRatio * multiplier;
+		let numCorrect: number = 0;
+		let numIncorrect: number = 0;
+		for (let i = 0; i < correctAnswers.length + incorrectAnswers.length; i++) {
+			if (correctAnswers.includes(this.response[i])) {
+				numCorrect++;
+			} else if (incorrectAnswers.includes(this.response[i])) {
+				numIncorrect++;
+			}
 		}
+
+		// ? math check
+		/* console.log('CORRECT ANSWERS:');
+		console.log(correctAnswers);
+		console.log(correctAnswers.length);
+		console.log('INCORRECT ANSWERS');
+		console.log(incorrectAnswers);
+		console.log(`rightLength: ${correctAnswers.length}`);
+		console.log(`wrongLength: ${incorrectAnswers.length}`); */
+		if (numCorrect > 0) {
+			if (credit === 'single') {
+				if (numCorrect === correctAnswers.length && numIncorrect === 0) {
+					pointsWon = 1 * multiplier;
+				}
+			} else {
+				pointsWon =
+					(multiplier / correctAnswers.length) * (numCorrect - numIncorrect);
+				if (pointsWon < 0) {
+					pointsWon = 0;
+				}
+			}
+		}
+		// ? math check cont.
+		/* console.log(`numCorrect: ${numCorrect}`);
+		console.log(`numIncorrect: ${numIncorrect}`);
+		console.log(`pointsWon: ${pointsWon}`); */
 
 		if (this.player1.getName() === lockersName) {
 			this.player1.setScore(this.player1.getScore() + pointsWon);
@@ -80,7 +117,7 @@ export default class Match {
 		}
 		this.currentRound = this.rounds.shift();
 		this.currentRoundNumber++;
-		this.response = null;
+		this.response = [];
 
 		return pointsWon;
 	}
