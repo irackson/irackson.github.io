@@ -127,6 +127,8 @@ const makeBoolean = (): JQuery => {
 		e.preventDefault();
 		$trueEl.css('border', '1px solid black');
 		$falseEl.css('border', '2px solid silver');
+		$player1Button.css('color', 'white');
+		$player2Button.css('color', 'white');
 
 		match.response = 'False';
 	});
@@ -135,6 +137,8 @@ const makeBoolean = (): JQuery => {
 		e.preventDefault();
 		$falseEl.css('border', '1px solid black');
 		$trueEl.css('border', '2px solid silver');
+		$player1Button.css('color', 'white');
+		$player2Button.css('color', 'white');
 
 		match.response = 'True';
 	});
@@ -236,8 +240,8 @@ const runQuiz = function (triviaData: []): void {
 		$questionStatsContainer.hide();
 		$promptText.text('Game Over!');
 		$responseContainer.fadeOut();
-		$player1Button.fadeOut();
-		$player2Button.fadeOut();
+		$player1Button.fadeOut(); // TODO change animation time so user sees last question border
+		$player2Button.fadeOut(); // TODO change animation time so user sees last question border
 		$p1ScoreText.text(player1.getScore());
 		$p2ScoreText.text(player2.getScore());
 		const winner: string | null = match.getLeader();
@@ -264,7 +268,9 @@ const runQuiz = function (triviaData: []): void {
 		$p1ScoreText.text(match.player1.getScore());
 		$p2ScoreText.text(match.player2.getScore());
 		$promptText.text(decodeURIComponent(question));
-		$questionNumberText.text('c/t'); // TODO
+		$questionNumberText.text(
+			`${match.currentRoundNumber}/${match.totalRoundNumbers}`
+		);
 		$questionDifficultyText.text(decodeURIComponent(difficulty));
 
 		if (type === 'boolean') {
@@ -500,6 +506,8 @@ $playButton.on('click', function (e) {
 		}
 	} else {
 		console.log('CHOOSE should bounce');
+		$modeContainer.fadeOut();
+		$modeContainer.fadeIn();
 		// add bounce animation to choose game mode...
 	}
 });

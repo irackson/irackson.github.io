@@ -25,6 +25,10 @@ const calculateMax: (triviaData: any[]) => number = function (
 export default class Match {
 	currentRound: any;
 
+	currentRoundNumber: number;
+
+	totalRoundNumbers: number;
+
 	rounds: any[];
 
 	player1: Player;
@@ -41,6 +45,8 @@ export default class Match {
 			prettyData.push(JSON.parse(JSON.stringify(uglyData[i])));
 		}
 		this.maxScore = calculateMax(prettyData);
+		this.currentRoundNumber = 1;
+		this.totalRoundNumbers = prettyData.length;
 		this.currentRound = prettyData.shift();
 
 		this.rounds = prettyData;
@@ -73,7 +79,7 @@ export default class Match {
 			this.player2.setScore(this.player2.getScore() + pointsWon);
 		}
 		this.currentRound = this.rounds.shift();
-
+		this.currentRoundNumber++;
 		this.response = null;
 
 		return pointsWon;

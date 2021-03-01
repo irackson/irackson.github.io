@@ -184,7 +184,7 @@ main {
 					}
 
 					.visual-container {
-						background-color: midnightblue;
+						border: 1px solid midnightblue;
 						width: 60%;
 						height: 100%;
 					}
@@ -194,6 +194,10 @@ main {
 					height: 35%;
 					// overflow: hidden;
 					font-family: 'IM Fell English', serif;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
 
 					.result-stats-container {
 						height: 100%;
@@ -211,7 +215,7 @@ main {
 
 					.question-stats-container {
 						height: 100%;
-						width: 100%;
+						width: 65%;
 						display: flex;
 						justify-content: space-between;
 						align-items: center;
