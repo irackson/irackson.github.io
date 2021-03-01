@@ -41,19 +41,13 @@ customLog(
 //!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
 //!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
 
-// TODO: each player has their own submit button
-// TODO: timed, with option to choose seconds/question vs. not timed
+// TODO: consider timed questions or countdown
 // TODO: click to reveal hint if available
-// TODO: display reference if available
 // TODO: scores start at 100%
-// TODO: mobile design is minimal, but as screen gets bigger instructions are added
-// TODO: fix fontawesome link bug
-// TODO: add bounce animation to CHOOSE and/or GAME MODE after play click w/out mode selected
 // TODO: add cool animation question mark to response container when game is inactive and no mode is selected thats visible on load
-// TODO: deal with error: otdp 'response_code: 1'... no trivia available. app should alert user and return them to otdp start page!!!
 // TODO: swap every 2nd &rdquo with &ldquo
-
-/* display level of difficulty for each particular question: easy, medium, and hard. hover for definitions: medium and hard questions are worth twice as much as easy questions, and hard questions may given partial credit if there is more than one answer */
+// TODO: add hover with info about easy/medium/hard
+// TODO: add hover to question # with info on category
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
@@ -150,38 +144,14 @@ const makeBoolean = (): JQuery => {
 };
 
 const makeMultiple = (): JQuery => {
-	const $multipleEl = $(
-		'<div class="multiple-container"><p>multiple choices here</p></div>'
-	);
+	const $multipleEl = $('<div class="multiple-container" />');
+
 	return $multipleEl;
 };
 
 const runQuiz = function (triviaData: []): void {
-	/* 	for (let i = 0; i < data.results.length; i++) {
-		customLog(decodeURIComponent(data.results[i].question), 'info');
-	} */
 	// TODO: always decodeURIComponent(data.string) before doing anything
-	//! run once
-	// create two new Player, player1 & player2
-	// instantiate match = new Match(quiz: data, players: {p1: player1, p2, player2})
-	// set match.max to calculateMax(match.data)
-	// p1.score/match.max to $p1ScoreText.text(), p2.score/match.max to #p2ScoreText.text(), $p1ScoreContainer().show(), $p1ScoreContainer().show()
-	//* while questions.length > 0...
-	//! BEFORE lock
-	//* question to $promptText.text()
-	//* difficulty to #difficultyText.text()
-	//* if credit defined... credit to $creditText.text(), $creditContainer.show()
-	//* all answers to .response-container
-	//! AFTER lock
-	//* lockers score += Math.floor(credit <right/wrong> * difficulty <1|2|3>)
-	//* questions.pop();
-	//* creditContainer.hide();
-	//! AFTER loop
-	//* determine and set winner
-	//* $promptContainer.text(match.winner)
-	//* $player1Button.hide(), $player2Button.hide()
-	//* show wrong questions and right answers for each player in $responseContainer
-
+	// TODO: if credit defined... credit to $creditText.text(), $creditContainer.show()
 	/* CODE HERE */
 	player1 = new Player('Player One', 0);
 	player2 = new Player('Player Two', 0);
@@ -197,10 +167,6 @@ const runQuiz = function (triviaData: []): void {
 	}
 	$divisionSpacing.html(spaceString);
 
-	customLog('new match started', 'info');
-	console.log(match);
-
-	//* for each round...
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 
 	let {
@@ -237,7 +203,8 @@ const runQuiz = function (triviaData: []): void {
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
 	function handleGameOver() {
-		console.log('handleGameListener called');
+		// TODO: show wrong questions and right answers for each player in $responseContainer
+
 		$questionStatsContainer.hide();
 		$promptText.text('Game Over!');
 		$responseContainer.fadeOut();
@@ -257,8 +224,6 @@ const runQuiz = function (triviaData: []): void {
 
 	const updateDom: () => void = function (): void {
 		if (match.rounds.length === 0) {
-			console.log('handleGameOver listener added');
-
 			$player1Button.off();
 			$player2Button.off();
 			$player1Button.on('click', () => handleGameOver());
@@ -296,15 +261,7 @@ const runQuiz = function (triviaData: []): void {
 
 			updateData();
 			updateDom();
-
-			// if (match.rounds.length === 0) {
-			// 	$promptText.text('Game Over!');
-			// 	$responseContainer.fadeOut();
-			// }
 		}
-		// else if (match.rounds.length === 0) {
-
-		// }
 	});
 
 	$player2Button.on('click', function (e) {
@@ -461,7 +418,6 @@ $playButton.on('click', function (e) {
 		gameOn = false;
 		modeSelected = undefined;
 	} else if (modeSelected !== undefined) {
-		// add condition for modeSelected === "otdb" & params not filled in by user
 		$devPregameContainer.hide();
 		$otdbPregameContainer.hide();
 		$inactiveGameContainer.hide();
@@ -506,9 +462,7 @@ $playButton.on('click', function (e) {
 			playTrivia(otdbParameters);
 		}
 	} else {
-		console.log('CHOOSE should bounce');
 		$modeContainer.fadeOut();
 		$modeContainer.fadeIn();
-		// add bounce animation to choose game mode...
 	}
 });
