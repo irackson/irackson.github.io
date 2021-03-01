@@ -261,7 +261,9 @@ const runQuiz = function (triviaData: []): void {
 		if (type === 'boolean') {
 			$responseEl = makeBoolean();
 		} else if (type === 'multiple') {
-			$responseEl = makeMultiple(incorrectAnswers); // TODO: write function optionsJoinMix(correctAnswer: string | string[], incorrectAnswers: string[]) => string[]
+			$responseEl = makeMultiple(
+				_.shuffle(_.concat(correctAnswer, incorrectAnswers))
+			); // TODO: write function optionsJoinMix(correctAnswer: string | string[], incorrectAnswers: string[]) => string[]
 		}
 		$responseContainer.append($responseEl.eq(0));
 	};
