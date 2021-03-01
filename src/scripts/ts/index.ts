@@ -66,6 +66,7 @@ const $resultStatsContainer = $('result-stats-container');
 const $winnerText = $('#winner-text');
 const $questionStatsContainer = $('.question-stats-container');
 const $questionNumberText = $('#question-number-text');
+const $partialCreditContainer = $('.partial-credit-container');
 const $questionDifficultyText = $('#question-difficulty-text');
 
 const $player1Button = $('#player-1-button'); // hidden onload
@@ -186,7 +187,6 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 				match.response = [options[i]];
 			} else {
 				const currentBorderColor = $boxEl.css('borderColor');
-				console.log(typeof currentBorderColor);
 				if (currentBorderColor === 'rgb(0, 0, 0)') {
 					$boxEl.css('border', '2px solid silver');
 					match.response.push(options[i]);
@@ -195,7 +195,6 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 					match.response = match.response.filter((el) => el !== options[i]);
 				}
 			}
-			console.log(match.response);
 		});
 		$boxesContainer.append($boxEl);
 	}
@@ -212,6 +211,11 @@ const runQuiz = function (triviaData: []): void {
 	player2 = new Player('Player Two', 0);
 	match = new Match(triviaData, { p1: player1, p2: player2 });
 
+	console.log(match.currentRound.credit);
+	if (match.currentRound.credit === 'partial') {
+		$partialCreditContainer.fadeIn();
+		console.log('hi');
+	}
 	$p1ScoreText.text(player1.getScore());
 	$p2ScoreText.text(player2.getScore());
 	$maxPointsText.text(match.maxScore);
@@ -256,8 +260,8 @@ const runQuiz = function (triviaData: []): void {
 				try {
 					correctAnswer = decodeURIComponent(correctAnswer);
 				} catch (error) {
-					console.log(`${correctAnswer} decode error`, 'info');
-					console.log(error, 'error');
+					customLog(`${correctAnswer} decode error`, 'info');
+					customLog(error, 'error');
 				}
 				correctAnswer = [correctAnswer];
 			} else {
@@ -349,6 +353,14 @@ const runQuiz = function (triviaData: []): void {
 		$questionNumberText.text(
 			`${match.currentRoundNumber}/${match.totalRoundNumbers}`
 		);
+		console.log(credit);
+		if (credit === 'partial') {
+			$partialCreditContainer.fadeIn();
+			console.log('hi');
+		} else {
+			$partialCreditContainer.fadeOut();
+		}
+
 		$questionDifficultyText.text(difficulty);
 
 		if (type === 'boolean') {
@@ -362,9 +374,6 @@ const runQuiz = function (triviaData: []): void {
 		$responseContainer.append($responseEl.eq(0));
 	};
 	updateDom();
-
-	console.log(`correctAnswers: ${correctAnswer}`);
-	console.log(`incorrectAnswers: ${incorrectAnswers}`);
 
 	$player1Button.on('click', function (e) {
 		e.preventDefault();

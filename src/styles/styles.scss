@@ -213,6 +213,14 @@ main {
 						}
 					}
 
+					.partial-credit-container {
+						display: none;
+
+						#partial-credit {
+							color: yellow;
+						}
+					}
+
 					.question-stats-container {
 						height: 100%;
 						width: 65%;
