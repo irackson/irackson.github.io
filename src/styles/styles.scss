@@ -466,16 +466,8 @@ main {
 						border-radius: 5px;
 						padding-left: 3px;
 						padding-right: 3px;
-						padding-top: max(min((#{$minMargin} / 2)), (#{$maxMargin} / 3));
-						padding-bottom: max(min((#{$minMargin} / 2)), (#{$maxMargin} / 3));
 						display: flex;
 						justify-content: space-around;
-						width: max(
-							min(#{$minWidth} / #{$numOptions}),
-							(#{$maxWidth} / #{$numOptions})
-						);
-						margin-left: max(min(#{$minMargin}), #{$maxMargin});
-						margin-right: max(min(#{$minMargin}), #{$maxMargin});
 					}
 				}
 			}

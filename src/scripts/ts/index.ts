@@ -150,11 +150,30 @@ const makeMultiple = (options: string[]): JQuery => {
 	const $multipleEl = $('<div class="multiple-container" />');
 
 	const $boxesContainer = $('<div class="boxes-container"></div>');
-	console.log(options);
+
+	const numOptions: string = options.length.toString();
+	const minWidth: string = '280px';
+	const minMargin: string = '2%';
+	const maxWidth: string = '100%';
+	const maxMargin: string = '5%';
+
+	const paddingTop: string = `max((${minMargin} / 2), (${maxMargin} / 3))`;
+	const paddingBottom: string = `max((${minMargin} / 2), (${maxMargin} / 3))`;
+	const widthSize: string = `max((${minWidth} / ${numOptions}), (${maxWidth} / ${numOptions})`;
+	const marginLeft: string = `max(${minMargin}, ${maxMargin})`;
+	const marginRight: string = `max(${minMargin}, ${maxMargin})`;
 
 	for (let i = 0; i < options.length; i++) {
 		const $boxEl = $(`<div class="box-container" id="box-container-${i}">
 		<div class="box-content" id="box-content-${i}">${options[i]}</div></div>`); // TODO: decodeURIComponent error... insert try (catch?) throw
+
+		$boxEl.css({
+			'padding-top': `${paddingTop}`,
+			'padding-bottom': `${paddingBottom}`,
+			width: `${widthSize}`,
+			'margin-left': `${marginLeft}`,
+			'margin-right': `${marginRight}`,
+		});
 
 		$boxEl.on('click', function (e) {
 			e.preventDefault();
