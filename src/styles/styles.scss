@@ -427,6 +427,58 @@ main {
 					padding-right: 1.33%;
 				}
 			}
+
+			$numOptions: 6;
+			$minWidth: 280px;
+			$minHeight: 230px;
+			$minMargin: 2%;
+			$maxWidth: 100%;
+			$maxHeight: 100%;
+			$maxMargin: 5%;
+
+			.multiple-container {
+				height: 100%;
+				overflow: auto;
+
+				.boxes-container {
+					text-align: center;
+					font-size: max(min(10px), 0.5em);
+
+					height: 100%;
+					width: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					flex-direction: row;
+					justify-content: space-around;
+					align-items: center;
+					margin: 0;
+					padding: 0;
+					word-break: break-word;
+
+					-webkit-hyphens: auto;
+					-ms-hyphens: auto;
+					-moz-hyphens: auto;
+					hyphens: auto;
+
+					.box-container {
+						border: 1px solid black;
+						background-color: green;
+						border-radius: 5px;
+						padding-left: 3px;
+						padding-right: 3px;
+						padding-top: max(min((#{$minMargin} / 2)), (#{$maxMargin} / 3));
+						padding-bottom: max(min((#{$minMargin} / 2)), (#{$maxMargin} / 3));
+						display: flex;
+						justify-content: space-around;
+						width: max(
+							min(#{$minWidth} / #{$numOptions}),
+							(#{$maxWidth} / #{$numOptions})
+						);
+						margin-left: max(min(#{$minMargin}), #{$maxMargin});
+						margin-right: max(min(#{$minMargin}), #{$maxMargin});
+					}
+				}
+			}
 		}
 	}
 }

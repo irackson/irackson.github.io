@@ -143,8 +143,27 @@ const makeBoolean = (): JQuery => {
 	return $booleanEl;
 };
 
-const makeMultiple = (): JQuery => {
+const makeMultiple = (options: string[]): JQuery => {
+	// TODO: toggle border color on click
+	// TODO: add to response if border silver, remove if black
+
 	const $multipleEl = $('<div class="multiple-container" />');
+
+	const $boxesContainer = $('<div class="boxes-container"></div>');
+	console.log(options);
+
+	for (let i = 0; i < options.length; i++) {
+		const $boxEl = $(`<div class="box-container" id="box-container-${i}">
+		<div class="box-content" id="box-content-${i}">${options[i]}</div></div>`); // TODO: decodeURIComponent error... insert try (catch?) throw
+
+		$boxEl.on('click', function (e) {
+			e.preventDefault();
+			console.log(`box ${i}: ${options[i]}`);
+		});
+		$boxesContainer.append($boxEl);
+		console.log($boxesContainer);
+	}
+	$multipleEl.append($boxesContainer);
 
 	return $multipleEl;
 };
@@ -242,7 +261,7 @@ const runQuiz = function (triviaData: []): void {
 		if (type === 'boolean') {
 			$responseEl = makeBoolean();
 		} else if (type === 'multiple') {
-			$responseEl = makeMultiple();
+			$responseEl = makeMultiple(incorrectAnswers); // TODO: write function optionsJoinMix(correctAnswer: string | string[], incorrectAnswers: string[]) => string[]
 		}
 		$responseContainer.append($responseEl.eq(0));
 	};
