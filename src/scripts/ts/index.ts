@@ -175,12 +175,14 @@ const makeMultiple = (options: string[]): JQuery => {
 			'margin-right': `${marginRight}`,
 		});
 
+		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$boxEl.on('click', function (e) {
 			e.preventDefault();
 			console.log(`box ${i}: ${options[i]}`);
+
+			match.response = options[i];
 		});
 		$boxesContainer.append($boxEl);
-		console.log($boxesContainer);
 	}
 	$multipleEl.append($boxesContainer);
 
@@ -223,6 +225,55 @@ const runQuiz = function (triviaData: []): void {
 		category, // ? optional key describing category
 	} = match.currentRound;
 
+	function cleanData(): void {
+		try {
+			question = decodeURIComponent(question);
+
+			if (typeof correctAnswer === 'string') {
+				correctAnswer = decodeURIComponent(correctAnswer);
+			} else {
+				for (let i = 0; i < correctAnswer.length; i++) {
+					correctAnswer[i] = decodeURIComponent(correctAnswer[i]);
+				}
+			}
+
+			for (let i = 0; i < incorrectAnswers.length; i++) {
+				incorrectAnswers[i] = decodeURIComponent(incorrectAnswers[i]);
+			}
+
+			if (datatype === undefined) {
+				datatype = 'text';
+			}
+
+			if (credit === undefined) {
+				credit = 'single';
+			}
+
+			if (category !== undefined) {
+				category = decodeURIComponent(category);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	cleanData();
+
+	console.table([
+		type,
+		difficulty,
+		question,
+		correctAnswer,
+		incorrectAnswers,
+		expression,
+		options,
+		datatype,
+		credit,
+		testingCase,
+		hint,
+		reference,
+		category,
+	]);
+
 	const updateData: () => void = function (): void {
 		type = match.currentRound.type;
 		difficulty = match.currentRound.difficulty;
@@ -237,6 +288,24 @@ const runQuiz = function (triviaData: []): void {
 		hint = match.currentRound.hint;
 		reference = match.currentRound.reference;
 		category = match.currentRound.category;
+
+		cleanData();
+
+		console.table([
+			type,
+			difficulty,
+			question,
+			correctAnswer,
+			incorrectAnswers,
+			expression,
+			options,
+			datatype,
+			credit,
+			testingCase,
+			hint,
+			reference,
+			category,
+		]);
 	};
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
@@ -271,11 +340,11 @@ const runQuiz = function (triviaData: []): void {
 		$responseEl.detach();
 		$p1ScoreText.text(match.player1.getScore());
 		$p2ScoreText.text(match.player2.getScore());
-		$promptText.text(decodeURIComponent(question));
+		$promptText.text(question);
 		$questionNumberText.text(
 			`${match.currentRoundNumber}/${match.totalRoundNumbers}`
 		);
-		$questionDifficultyText.text(decodeURIComponent(difficulty));
+		$questionDifficultyText.text(difficulty);
 
 		if (type === 'boolean') {
 			$responseEl = makeBoolean();
