@@ -184,7 +184,7 @@ main {
 					}
 
 					.visual-container {
-						border: 1px solid midnightblue;
+						background-color: rgba(25, 25, 112, 0.61);
 						width: 60%;
 						height: 100%;
 					}
@@ -317,7 +317,7 @@ main {
 			.dev-details-container {
 				height: 75%;
 				width: 100%;
-				background-color: gray;
+				background-color: rgba(192, 137, 137, 0.863);
 			}
 		}
 
@@ -401,7 +401,6 @@ main {
 		.response-container {
 			height: 100%;
 			display: none;
-			border: 1px solid black;
 
 			.boolean-container {
 				height: 100%;

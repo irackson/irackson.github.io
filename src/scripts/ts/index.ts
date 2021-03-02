@@ -44,10 +44,10 @@ customLog(
 // TODO: consider timed questions or countdown
 // TODO: click to reveal hint if available
 // TODO: scores start at 100%
-// TODO: add cool animation question mark to response container when game is inactive and no mode is selected thats visible on load
+// TODO: welcome page in inactive bottom container when no mode is selected (visible on load)
 // TODO: swap every 2nd &rdquo with &ldquo
-// TODO: add hover with info about easy/medium/hard
-// TODO: add hover to question # with info on category
+// TODO: display info about easy/medium/hard on difficulty-container hover
+// TODO: display category on hover of question #
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
@@ -214,7 +214,6 @@ const runQuiz = function (triviaData: []): void {
 	console.log(match.currentRound.credit);
 	if (match.currentRound.credit === 'partial') {
 		$partialCreditContainer.fadeIn();
-		console.log('hi');
 	}
 	$p1ScoreText.text(player1.getScore());
 	$p2ScoreText.text(player2.getScore());
@@ -353,10 +352,8 @@ const runQuiz = function (triviaData: []): void {
 		$questionNumberText.text(
 			`${match.currentRoundNumber}/${match.totalRoundNumbers}`
 		);
-		console.log(credit);
 		if (credit === 'partial') {
 			$partialCreditContainer.fadeIn();
-			console.log('hi');
 		} else {
 			$partialCreditContainer.fadeOut();
 		}
@@ -377,7 +374,7 @@ const runQuiz = function (triviaData: []): void {
 
 	$player1Button.on('click', function (e) {
 		e.preventDefault();
-		if (match.response !== null) {
+		if (match.response.length !== 0) {
 			$player2Button.css('color', 'white');
 			const pointsWon = match.processResponse(
 				player1.getName(),
@@ -410,7 +407,8 @@ const runQuiz = function (triviaData: []): void {
 
 	$player2Button.on('click', function (e) {
 		e.preventDefault();
-		if (match.response !== null) {
+		console.log(match.response);
+		if (match.response.length !== 0) {
 			$player1Button.css('color', 'white');
 			const pointsWon = match.processResponse(
 				player2.getName(),
@@ -520,7 +518,7 @@ $devSelectButton.on('click', function (e) {
 	$otdbPregameContainer.hide();
 
 	$otdbSelectButton.css('border', '1px solid black');
-	$devSelectButton.css('border', '3px solid silver');
+	$devSelectButton.css('border', '2px dashed silver');
 	$devPregameContainer.show();
 
 	modeSelected = 'dev';
@@ -536,7 +534,7 @@ $otdbSelectButton.on('click', function (e) {
 	$devPregameContainer.hide();
 
 	$devSelectButton.css('border', '1px solid black');
-	$otdbSelectButton.css('border', '3px solid silver');
+	$otdbSelectButton.css('border', '2px dashed silver');
 	$otdbDescriptionText.html(
 		'Customize your match! Choose from over 4,000 verified questions housed in the <span class="nowrap">Open Trivia Database!</span>'
 	);
@@ -590,7 +588,7 @@ $playButton.on('click', function (e) {
 		$promptContainer.show();
 		$responseContainer.show();
 
-		$playButton.css('border', '1px solid silver');
+		$playButton.css('border', '1px dotted silver');
 
 		gameOn = true;
 
