@@ -59,6 +59,7 @@ customLog(
 // TODO: swap every 2nd &rdquo with &ldquo
 // TODO: display info about easy/medium/hard on difficulty-container hover
 // TODO: display category on hover of question #
+// TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
@@ -217,9 +218,7 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 	const $sentenceContainer = $('<div class="sentence-container"></div>');
 
 	const incompleteString = incomplete[0];
-
 	const parsed: string[] = incompleteString.split(' ');
-
 	let sentenceHTML = '<p>';
 	for (let i = 0; i < parsed.length; i++) {
 		if (parsed[i] !== '_') {
@@ -236,14 +235,20 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 		const $thisSpan = $($sentenceSpans[i]);
 		const thisID = parseInt($thisSpan[0].id, 10); // decimal radix parameter
 
+		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$thisSpan.on('input', function (e) {
 			e.preventDefault();
+
 			if ($thisSpan.text() !== '') {
 				$thisSpan.css('outline', 'goldenrod auto 3px');
 			} else {
 				$thisSpan.css('outline', 'silver auto 3px');
 			}
-			console.log(`${thisID}: ${$thisSpan.text()}`);
+
+			parsed[thisID] = $thisSpan.text();
+			const responseString = parsed.join(' ');
+
+			match.response = [responseString];
 		});
 	}
 
@@ -364,8 +369,15 @@ const runQuiz = function (triviaData: []): void {
 	};
 	/* eslint-enable @typescript-eslint/no-unused-vars */
 
-	function handleGameOver() {
+	function handleGameOver(lastPlayerName: string) {
 		// TODO: show wrong questions and right answers for each player in $responseContainer
+
+		match.processResponse(
+			lastPlayerName,
+			correctAnswer,
+			incorrectAnswers,
+			credit
+		);
 
 		$questionStatsContainer.hide();
 		$promptText.text('Game Over!');
@@ -388,8 +400,8 @@ const runQuiz = function (triviaData: []): void {
 		if (match.rounds.length === 0) {
 			$player1Button.off();
 			$player2Button.off();
-			$player1Button.on('click', () => handleGameOver());
-			$player2Button.on('click', () => handleGameOver());
+			$player1Button.on('click', () => handleGameOver(player1.getName()));
+			$player2Button.on('click', () => handleGameOver(player2.getName()));
 		}
 
 		$responseEl.detach();

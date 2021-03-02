@@ -1,13 +1,12 @@
 {
 	"results": [
 		{
-			"difficulty": "easy",
+			"difficulty": "medium",
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "\"You can't have your cake and eat it too.\"",
-			"incorrect_answers": ["\"You can't have your _ and _ it too.\""],
-			"hint": "\"Everyone knows You can't have your eat and cake it too\"",
+			"correct_answer": "You can't have your cake and eat it too",
+			"incorrect_answers": ["You can't have your _ and _ it too"],
 			"credit": "single"
 		},
 		{
@@ -15,9 +14,8 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blank appropriately.",
 			"type": "fill",
-			"correct_answer": "\"A rolling stone gathers no moss.\"",
-			"incorrect_answers": ["\"A rolling stone gathers no _.\""],
-			"hint": "Think about what it is that stones that are rolling do gather.",
+			"correct_answer": "A rolling stone gathers no moss",
+			"incorrect_answers": ["A rolling stone gathers no _"],
 			"credit": "single"
 		},
 		{
@@ -25,22 +23,18 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "\"An ounce of protection is worth a pound of cure.\"",
-			"incorrect_answers": ["\"An _ of protection is worth a _ of cure.\""],
-			"hint": "1 lb = 16 oz",
-			"credit": "partial"
+			"correct_answer": "An ounce of protection is worth a pound of cure",
+			"incorrect_answers": ["An _ of protection is worth a _ of cure"],
+			"credit": "single"
 		},
 		{
 			"difficulty": "hard",
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "\"The grass is greener on the other side of the fence.\"",
-			"incorrect_answers": [
-				"\"The grass is greener on the other side _ _ _.\""
-			],
-			"hint": "The second missing word is \"the\"",
-			"credit": "partial"
+			"correct_answer": "The grass is greener on the other side of the fence",
+			"incorrect_answers": ["The grass is greener on the other side _ _ _"],
+			"credit": "single"
 		}
 	]
 }

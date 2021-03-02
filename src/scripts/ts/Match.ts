@@ -65,6 +65,10 @@ export default class Match {
 		let pointsWon = 0;
 		let multiplier = 0;
 
+		console.log(correctAnswers);
+		console.log(this.response);
+		console.log('hi');
+
 		if (this.currentRound.difficulty === 'easy') {
 			multiplier = 1;
 		} else if (this.currentRound.difficulty === 'medium') {
@@ -123,8 +127,6 @@ export default class Match {
 	}
 
 	getLeader(): string | null {
-		console.log(this.player1.getScore());
-		console.log(this.player2.getScore());
 		if (this.player1.getScore() > this.player2.getScore()) {
 			return this.player1.getName();
 		}
