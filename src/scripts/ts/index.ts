@@ -216,11 +216,40 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 
 	const $sentenceContainer = $('<div class="sentence-container"></div>');
 
-	let incompleteString = incomplete[0];
-	$sentenceContainer.text(incompleteString);
+	const incompleteString = incomplete[0];
+
+	const parsed: string[] = incompleteString.split(' ');
+
+	let sentenceHTML = '<p>';
+	for (let i = 0; i < parsed.length; i++) {
+		if (parsed[i] !== '_') {
+			sentenceHTML += ` ${parsed[i]}`;
+		} else {
+			sentenceHTML += `</p><span contenteditable="true" id="${i}" class="text-box"></span><br><p>`;
+		}
+	}
+	sentenceHTML += '</p>';
+
+	$sentenceContainer.html(sentenceHTML);
+	const $sentenceSpans = $($sentenceContainer[0]).children('span');
+	for (let i = 0; i < $sentenceSpans.length; i++) {
+		const $thisSpan = $($sentenceSpans[i]);
+		const thisID = parseInt($thisSpan[0].id, 10); // decimal radix parameter
+
+		$thisSpan.on('input', function (e) {
+			e.preventDefault();
+			if ($thisSpan.text() !== '') {
+				$thisSpan.css('outline', 'goldenrod auto 3px');
+			} else {
+				$thisSpan.css('outline', 'silver auto 3px');
+			}
+			console.log(`${thisID}: ${$thisSpan.text()}`);
+		});
+	}
 
 	$fillEl.append($sentenceContainer);
 
+	console.log(`credit: ${credit}`);
 	return $fillEl;
 };
 
