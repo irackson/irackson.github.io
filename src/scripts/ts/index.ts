@@ -41,10 +41,21 @@ customLog(
 //!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
 //!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
 
-// TODO: consider timed questions or countdown
-// TODO: click to reveal hint if available
-// TODO: scores start at 100%
-// TODO: welcome page in inactive bottom container when no mode is selected (visible on load)
+//* top priority
+// TODO: hosting (has to be on github pages?) (fri)
+// TODO: design and configure dev challenge question type selection (weds)
+/* add all questions of all types to master json in online assets (20 each, multiple choice mostly partial credit, single credit multiple choice all images/links/colors) */
+/* write function to take in json object and turn into new array based on percent desired of each question type, then _.shuffle */
+// TODO: handle fill questions (weds)
+// TODO: handle dropdown questions (thurs)
+
+//* middle priority
+// TODO: configure multiple to handle link/images/colors (fri)
+// TODO: Countdown animation (thurs)
+/* .visual-container --> goes to next question if neither player has selected anything. Implement by submitting an empty array to match.processResponse, and set both players to red text color */
+// TODO: onload / no mode selected response container --> welcome page (fri)
+
+//* low priority
 // TODO: swap every 2nd &rdquo with &ldquo
 // TODO: display info about easy/medium/hard on difficulty-container hover
 // TODO: display category on hover of question #
@@ -145,9 +156,6 @@ const makeBoolean = (): JQuery => {
 };
 
 const makeMultiple = (options: string[], credit: string): JQuery => {
-	// TODO: toggle border color on click
-	// TODO: add to response if border silver, remove if black
-
 	const $multipleEl = $('<div class="multiple-container" />');
 
 	const $boxesContainer = $('<div class="boxes-container"></div>');
@@ -203,6 +211,19 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 	return $multipleEl;
 };
 
+const makeFill = (incomplete: string[], credit: string): JQuery => {
+	const $fillEl = $('<div class="fill-container" />');
+
+	const $sentenceContainer = $('<div class="sentence-container"></div>');
+
+	let incompleteString = incomplete[0];
+	$sentenceContainer.text(incompleteString);
+
+	$fillEl.append($sentenceContainer);
+
+	return $fillEl;
+};
+
 const runQuiz = function (triviaData: []): void {
 	// TODO: always decodeURIComponent(data.string) before doing anything
 	// TODO: if credit defined... credit to $creditText.text(), $creditContainer.show()
@@ -232,7 +253,6 @@ const runQuiz = function (triviaData: []): void {
 		question, // prompt string
 		correct_answer: correctAnswer, // string if 1, arr if many
 		incorrect_answers: incorrectAnswers, // always arr
-		expression, // ! key only on type: blank
 		options, // ! key only on type: dropdown
 		datatype, // ? optional key. assume 'text' if undefined. can be text, link, img, color
 		credit, // ? optional key indicating partial credit. assume single (no partial) if undefined
@@ -303,7 +323,6 @@ const runQuiz = function (triviaData: []): void {
 		question = match.currentRound.question;
 		correctAnswer = match.currentRound.correct_answer;
 		incorrectAnswers = match.currentRound.incorrect_answers;
-		expression = match.currentRound.expression;
 		options = match.currentRound.options;
 		datatype = match.currentRound.datatype;
 		credit = match.currentRound.credit;
@@ -365,8 +384,11 @@ const runQuiz = function (triviaData: []): void {
 			$responseEl = makeMultiple(
 				_.shuffle(_.concat(correctAnswer, incorrectAnswers)),
 				credit
-			); // TODO: write function optionsJoinMix(correctAnswer: string | string[], incorrectAnswers: string[]) => string[]
+			);
+		} else if (type === 'fill') {
+			$responseEl = makeFill(incorrectAnswers, credit);
 		}
+
 		$responseContainer.append($responseEl.eq(0));
 	};
 	updateDom();
@@ -450,9 +472,10 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 	} else {
 		//* trivia-cases hosting links
 		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
-		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json';
+		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json';
 		// url =
 		// 	'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/fill-questions.json';
 	}
 
 	$.ajax({

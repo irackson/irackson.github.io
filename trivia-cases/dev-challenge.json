@@ -49,6 +49,48 @@
 		},
 		{
 			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Complete the proverb by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "\"You can't have your cake and eat it too.\"",
+			"incorrect_answers": ["\"You can't have your _ and _ it too.\""],
+			"hint": "\"Everyone knows You can't have your eat and cake it too\"",
+			"credit": "single"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Complete the proverb by filling in the blank appropriately.",
+			"type": "fill",
+			"correct_answer": "\"A rolling stone gathers no moss.\"",
+			"incorrect_answers": ["\"A rolling stone gathers no _.\""],
+			"hint": "Think about what it is that stones that are rolling do gather.",
+			"credit": "single"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Complete the proverb by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "\"An ounce of protection is worth a pound of cure.\"",
+			"incorrect_answers": ["\"An _ of protection is worth a _ of cure.\""],
+			"hint": "1 lb = 16 oz",
+			"credit": "partial"
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "text",
+			"question": "Complete the proverb by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "\"The grass is greener on the other side of the fence.\"",
+			"incorrect_answers": [
+				"\"The grass is greener on the other side _ _ _.\""
+			],
+			"hint": "The second missing word is \"the\"",
+			"credit": "partial"
+		},
+		{
+			"difficulty": "easy",
 			"datatype": "color",
 			"question": "Order these 'mouthwash' shades from lightest to darkest.",
 			"type": "rank",
@@ -76,8 +118,8 @@
 		{
 			"difficulty": "easy",
 			"datatype": "color",
-			"question": "Select the two identical colors.",
-			"type": "grid",
+			"question": "Select the unique colors.",
+			"type": "multiple",
 			"correct_answer": ["#4DD2FF", "#4DD2FF"],
 			"incorrect_answers": ["#EA6F4B", "#EA7256", "#AC9090", "#D0C0C0"],
 			"credit": "single"
@@ -86,7 +128,7 @@
 			"difficulty": "easy",
 			"datatype": "color",
 			"question": "Select the one color that's not like the others.",
-			"type": "grid",
+			"type": "multiple",
 			"correct_answer": "#862A51",
 			"incorrect_answers": [
 				"#8B2252",
@@ -125,47 +167,12 @@
 			"incorrect_answers": ["False"],
 			"hint": "Check the README!"
 		},
-		{
-			"difficulty": "easy",
-			"datatype": "text",
-			"question": "Complete the proverb by filling in the blanks appropriately.",
-			"type": "blank",
-			"expression": "\"You can't have your (cake) and (eat) it too.\"",
-			"hint": "\"Everyone knows You can't have your eat and cake it too\"",
-			"credit": "single"
-		},
-		{
-			"difficulty": "medium",
-			"datatype": "text",
-			"question": "Complete the proverb by filling in the blank appropriately.",
-			"type": "blank",
-			"expression": "\"A rolling stone gathers no (moss).\"",
-			"hint": "Think about what it is that stones that are rolling do gather.",
-			"credit": "single"
-		},
-		{
-			"difficulty": "medium",
-			"datatype": "text",
-			"question": "Complete the proverb by filling in the blanks appropriately.",
-			"type": "blank",
-			"expression": "\"An (ounce) of protection is worth a (pound) of cure.\"",
-			"hint": "1 lb = 16 oz",
-			"credit": "partial"
-		},
-		{
-			"difficulty": "hard",
-			"datatype": "text",
-			"question": "Complete the proverb by filling in the blanks appropriately.",
-			"type": "blank",
-			"expression": "\"The grass is greener on the other side (of) (the) (fence).\"",
-			"hint": "The second missing word is \"the\"",
-			"credit": "partial"
-		},
+
 		{
 			"difficulty": "medium",
 			"datatype": "img",
 			"question": "Select the shortest GIF.",
-			"type": "grid",
+			"type": "multiple",
 			"correct_answer": "https://giphy.com/embed/8lZ3GBbIbqBsn6pCNS",
 			"incorrect_answers": [
 				"https://giphy.com/embed/J1ugoU2Dis6DWWAoga",
@@ -178,7 +185,7 @@
 			"difficulty": "hard",
 			"datatype": "img",
 			"question": "Which characters are in the brady bunch?",
-			"type": "grid",
+			"type": "multiple",
 			"correct_answer": [
 				"https://giphy.com/embed/WiIC5AUPjlHxK",
 				"https://giphy.com/embed/xpY5NSHUDDaN2",
