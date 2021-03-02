@@ -211,7 +211,6 @@ const runQuiz = function (triviaData: []): void {
 	player2 = new Player('Player Two', 0);
 	match = new Match(triviaData, { p1: player1, p2: player2 });
 
-	console.log(match.currentRound.credit);
 	if (match.currentRound.credit === 'partial') {
 		$partialCreditContainer.fadeIn();
 	}
@@ -407,7 +406,6 @@ const runQuiz = function (triviaData: []): void {
 
 	$player2Button.on('click', function (e) {
 		e.preventDefault();
-		console.log(match.response);
 		if (match.response.length !== 0) {
 			$player1Button.css('color', 'white');
 			const pointsWon = match.processResponse(
@@ -536,7 +534,7 @@ $otdbSelectButton.on('click', function (e) {
 	$devSelectButton.css('border', '1px solid black');
 	$otdbSelectButton.css('border', '2px dashed silver');
 	$otdbDescriptionText.html(
-		'Customize your match! Choose from over 4,000 verified questions housed in the <span class="nowrap">Open Trivia Database!</span>'
+		'Customize your match! Choose from over 4,000 verified questions housed in the <span class="nowrap">Open Trivia Database.</span>'
 	);
 
 	otdbParametersForm.reset();
