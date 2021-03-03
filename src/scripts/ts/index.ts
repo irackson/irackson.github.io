@@ -43,10 +43,7 @@ customLog(
 
 //* top priority
 // TODO: hosting (has to be on github pages?) (fri)
-// TODO: configure dev challenge question type selection (weds) --> done tues
-/* add all questions of all types to master json in online assets (20 each, multiple choice mostly partial credit, single credit multiple choice all images/links/colors) */
-/* write function to take in json object and turn into new array based on percent desired of each question type, then _.shuffle */
-// TODO: handle fill questions (tues) --> done
+// TODO: implement slider for maxQuestions instead of 49
 // TODO: handle dropdown questions (weds)
 
 //* middle priority
@@ -61,6 +58,7 @@ customLog(
 // TODO: display category on hover of question #
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
 // TODO: style range slider --> add current value display
+// TODO: move jquery consts to new file
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
@@ -86,6 +84,10 @@ const $player1Button = $('#player-1-button'); // hidden onload
 const $player2Button = $('#player-2-button'); // hidden onload
 
 const $modeContainer = $('.mode-container');
+const $includeButtons = $('.dev-option-container .dev-option-button');
+const $includeAll = $('#all');
+const $devRange = $('#dev-range');
+
 const $devSelectButton = $('#dev-select-button');
 const $otdbDescriptionText = $('.otdb-description-text');
 const $otdbSelectButton = $('#otdb-select-button');
@@ -104,6 +106,8 @@ const $responseContainer = $('.response-container'); // hidden onload
 /* eslint-enable @typescript-eslint/no-unused-vars */
 let gameOn: boolean = false;
 let modeSelected: string | undefined;
+const allQuestionTypes = ['boolean', 'multiple', 'fill', 'dropdown'];
+let devPreferences: string[] = [];
 let match: Match;
 let player1: Player;
 let player2: Player;
@@ -213,6 +217,7 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 	return $multipleEl;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const makeFill = (incomplete: string[], credit: string): JQuery => {
 	const $fillEl = $('<div class="fill-container" />');
 
@@ -259,12 +264,22 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 };
 
 const runQuiz = function (triviaData: []): void {
-	// TODO: always decodeURIComponent(data.string) before doing anything
-	// TODO: if credit defined... credit to $creditText.text(), $creditContainer.show()
-	/* CODE HERE */
 	player1 = new Player('Player One', 0);
 	player2 = new Player('Player Two', 0);
-	match = new Match(triviaData, { p1: player1, p2: player2 });
+
+	if (modeSelected === 'dev') {
+		const includeQuestionTypes = devPreferences;
+		const maxQuestions = 49;
+
+		match = new Match(
+			triviaData,
+			{ p1: player1, p2: player2 },
+			includeQuestionTypes,
+			maxQuestions
+		);
+	} else {
+		match = new Match(triviaData, { p1: player1, p2: player2 });
+	}
 
 	if (match.currentRound.credit === 'partial') {
 		$partialCreditContainer.fadeIn();
@@ -428,6 +443,8 @@ const runQuiz = function (triviaData: []): void {
 			);
 		} else if (type === 'fill') {
 			$responseEl = makeFill(incorrectAnswers, credit);
+		} else if (type === 'dropdown') {
+			// $responseEl = makeDropdown();
 		}
 
 		$responseContainer.append($responseEl.eq(0));
@@ -512,11 +529,7 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 		}&encode=url3986`;
 	} else {
 		//* trivia-cases hosting links
-		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-questions.json';
-		// url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/multiple-questions.json';
-		// url =
-		// 	'https://cdn.aglty.io/3bikcueb/trivia-cases/boolean-multiple-questions.json';
-		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/fill-questions.json';
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/dev-challenge.json';
 	}
 
 	$.ajax({
@@ -571,6 +584,46 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 	);
 };
 
+$includeAll.on('click', function (e) {
+	e.preventDefault();
+
+	if ($includeAll.css('borderColor') === 'rgb(0, 0, 0)') {
+		devPreferences = allQuestionTypes;
+		$includeButtons.css('border', '1px solid black');
+		$includeAll.css('border', '2px solid silver');
+	} else {
+		devPreferences = [];
+		$includeAll.css('border', '1px solid black');
+	}
+	console.log(devPreferences);
+});
+
+$includeButtons.on('click', function (e) {
+	e.preventDefault();
+
+	const type: string = this.id;
+	const $typeEl = $(this);
+
+	if (devPreferences.length === allQuestionTypes.length) {
+		$includeAll.css('border', '1px solid black');
+		devPreferences = [];
+	}
+
+	if ($typeEl.css('borderColor') === 'rgb(0, 0, 0)') {
+		if (devPreferences.length === allQuestionTypes.length - 1) {
+			$includeButtons.css('border', '1px solid black');
+			$includeAll.css('border', '2px solid silver');
+		} else {
+			$typeEl.css('border', '2px solid silver');
+		}
+		devPreferences.push(type);
+	} else {
+		devPreferences = devPreferences.filter((el) => el !== type);
+		$typeEl.css('border', '1px solid black');
+	}
+	console.log(devPreferences);
+});
+
 $devSelectButton.on('click', function (e) {
 	e.preventDefault();
 	$promptText.text('');
@@ -583,7 +636,11 @@ $devSelectButton.on('click', function (e) {
 	$devSelectButton.css('border', '2px dashed silver');
 	$devPregameContainer.show();
 
+	$includeAll.css('border', '2px solid silver');
+	$includeButtons.css('border', '1px solid black');
+	devPreferences = allQuestionTypes;
 	modeSelected = 'dev';
+	console.log(devPreferences);
 });
 
 $otdbSelectButton.on('click', function (e) {
@@ -594,8 +651,8 @@ $otdbSelectButton.on('click', function (e) {
 	$player1Button.hide();
 	$player2Button.hide();
 	$devPregameContainer.hide();
-
 	$devSelectButton.css('border', '1px solid black');
+
 	$otdbSelectButton.css('border', '2px dashed silver');
 	$otdbDescriptionText.html(
 		'Customize your match! Choose from over 4,000 verified questions housed in the <span class="nowrap">Open Trivia Database.</span>'
@@ -605,10 +662,13 @@ $otdbSelectButton.on('click', function (e) {
 	$otdbPregameContainer.show();
 
 	modeSelected = 'otdb';
+	console.log(devPreferences);
 });
 
 $playButton.on('click', function (e) {
 	e.preventDefault();
+	console.log(modeSelected);
+	console.log(`prefs: ${devPreferences}`);
 
 	if (gameOn) {
 		// reset to reload state
@@ -638,7 +698,10 @@ $playButton.on('click', function (e) {
 
 		gameOn = false;
 		modeSelected = undefined;
-	} else if (modeSelected !== undefined) {
+	} else if (
+		modeSelected === 'otdb' ||
+		(modeSelected === 'dev' && devPreferences.length !== 0)
+	) {
 		$devPregameContainer.hide();
 		$otdbPregameContainer.hide();
 		$inactiveGameContainer.hide();
@@ -682,6 +745,11 @@ $playButton.on('click', function (e) {
 
 			playTrivia(otdbParameters);
 		}
+	} else if (modeSelected === 'dev' && devPreferences.length === 0) {
+		$includeButtons.fadeOut(500);
+		$includeAll.fadeOut(400);
+		$includeButtons.fadeIn(500);
+		$includeAll.fadeIn(400);
 	} else {
 		$modeContainer.fadeOut();
 		$modeContainer.fadeIn();

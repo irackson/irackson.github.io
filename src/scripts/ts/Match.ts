@@ -1,4 +1,22 @@
+import _ from 'lodash';
+
 import Player from './Player';
+//* see if you can just import _.shuffle
+
+// const filterUnwanted: (triviaData: any[], includeQuestionTypes: string[]) => any[] = function (
+// 	rounds: any[],
+// 	wantedTypes: string[]
+// ): any[] {
+// 	let wantedRounds: any[] = [];
+
+// 	wantedRounds
+
+// 	for (let i = 0; i < rounds.length; i++) {
+// 		if ()
+// 	}
+
+// 	return rounds;
+// };
 
 const calculateMax: (triviaData: any[]) => number = function (
 	rounds: any[]
@@ -39,11 +57,28 @@ export default class Match {
 
 	maxScore: number;
 
-	constructor(uglyData: any[], players: { p1: Player; p2: Player }) {
-		const prettyData: any[] = [];
+	constructor(
+		uglyData: any[],
+		players: { p1: Player; p2: Player },
+		includeQuestionTypes?: string[],
+		maxQuestions?: number
+	) {
+		let prettyData: any[] = [];
 		for (let i = 0; i < uglyData.length; i++) {
 			prettyData.push(JSON.parse(JSON.stringify(uglyData[i])));
 		}
+
+		if (includeQuestionTypes) {
+			prettyData = prettyData.filter((e) =>
+				includeQuestionTypes.includes(e.type)
+			);
+		}
+		if (maxQuestions && maxQuestions < prettyData.length) {
+			prettyData = prettyData.slice(0, maxQuestions);
+		}
+
+		prettyData = _.shuffle(prettyData);
+
 		this.maxScore = calculateMax(prettyData);
 		this.currentRoundNumber = 1;
 		this.totalRoundNumbers = prettyData.length;

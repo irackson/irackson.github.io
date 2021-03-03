@@ -334,10 +334,11 @@ main {
 					margin: 0;
 					padding: 0;
 
-					#include-all-button {
+					#all {
 						font-size: max(1em);
 						min-width: 80%;
 						padding-top: 1%;
+						border: 2px solid silver;
 					}
 
 					.slider-container {
