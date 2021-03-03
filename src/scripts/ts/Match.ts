@@ -61,7 +61,7 @@ export default class Match {
 		uglyData: any[],
 		players: { p1: Player; p2: Player },
 		includeQuestionTypes?: string[],
-		maxQuestions?: number
+		maxQuestionsPerType?: number
 	) {
 		let prettyData: any[] = [];
 		for (let i = 0; i < uglyData.length; i++) {
@@ -73,8 +73,29 @@ export default class Match {
 				includeQuestionTypes.includes(e.type)
 			);
 		}
-		if (maxQuestions && maxQuestions < prettyData.length) {
-			prettyData = prettyData.slice(0, maxQuestions);
+		if (includeQuestionTypes && maxQuestionsPerType) {
+			const separatedQuestions: any[][] = [];
+
+			for (let t = 0; t < includeQuestionTypes.length; t++) {
+				separatedQuestions[t] = prettyData;
+			}
+
+			prettyData = [];
+
+			separatedQuestions.forEach(function (arr, index) {
+				separatedQuestions[index] = arr
+					.filter(function (anyQuestion) {
+						if (anyQuestion.type === includeQuestionTypes[index]) {
+							return true;
+						}
+						return false;
+					})
+					.slice(0, maxQuestionsPerType);
+
+				for (let i = 0; i < separatedQuestions[index].length; i++) {
+					prettyData.push(separatedQuestions[index][i]);
+				}
+			});
 		}
 
 		prettyData = _.shuffle(prettyData);

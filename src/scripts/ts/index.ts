@@ -43,7 +43,7 @@ customLog(
 
 //* top priority
 // TODO: hosting (has to be on github pages?) (fri)
-// TODO: implement slider for maxQuestions instead of 49
+// TODO: implement slider for maxQuestionPerType instead of 49
 // TODO: handle dropdown questions (weds)
 
 //* middle priority
@@ -269,13 +269,13 @@ const runQuiz = function (triviaData: []): void {
 
 	if (modeSelected === 'dev') {
 		const includeQuestionTypes = devPreferences;
-		const maxQuestions = 49;
+		const maxQuestionPerType = 4;
 
 		match = new Match(
 			triviaData,
 			{ p1: player1, p2: player2 },
 			includeQuestionTypes,
-			maxQuestions
+			maxQuestionPerType
 		);
 	} else {
 		match = new Match(triviaData, { p1: player1, p2: player2 });
@@ -394,6 +394,7 @@ const runQuiz = function (triviaData: []): void {
 			credit
 		);
 
+		$partialCreditContainer.hide();
 		$questionStatsContainer.hide();
 		$promptText.text('Game Over!');
 		$responseContainer.fadeOut();
