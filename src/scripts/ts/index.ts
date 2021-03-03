@@ -43,11 +43,11 @@ customLog(
 
 //* top priority
 // TODO: hosting (has to be on github pages?) (fri)
-// TODO: design and configure dev challenge question type selection (weds)
+// TODO: configure dev challenge question type selection (weds) --> done tues
 /* add all questions of all types to master json in online assets (20 each, multiple choice mostly partial credit, single credit multiple choice all images/links/colors) */
 /* write function to take in json object and turn into new array based on percent desired of each question type, then _.shuffle */
-// TODO: handle fill questions (weds) --> done on tues
-// TODO: handle dropdown questions (thurs)
+// TODO: handle fill questions (tues) --> done
+// TODO: handle dropdown questions (weds)
 
 //* middle priority
 // TODO: configure multiple to handle link/images/colors (fri)
@@ -60,6 +60,7 @@ customLog(
 // TODO: display info about easy/medium/hard on difficulty-container hover
 // TODO: display category on hover of question #
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
+// TODO: style range slider --> add current value display
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
