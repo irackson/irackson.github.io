@@ -91,7 +91,13 @@
 			<section class="middle-container">
 				<section class="mode-container">
 					<div class="mode-select">
-						<div class="button" id="dev-select-button">DEV'S CHALLENGE</div>
+						<div
+							class="button"
+							id="dev-select-button"
+							onclick="document.getElementById('dev-range').value = '7'; document.getElementById('max-question-text').innerText = '7'"
+						>
+							DEV'S CHALLENGE
+						</div>
 					</div>
 					<div class="mode-select">
 						<div class="button" id="otdb-select-button">
@@ -129,17 +135,23 @@
 							</div>
 							<div class="dev-all-container center">
 								<div class="dev-option-button" id="all">ALL TYPES</div>
-								<div class="slider-container">
-									<input
-										type="range"
-										min="1"
-										max="50"
-										value="50"
-										step="1"
-										class="slider"
-										id="dev-range"
-									/>
-								</div>
+							</div>
+							<div class="slider-container top-middle">
+								<input
+									type="range"
+									min="1"
+									max="8"
+									value="7"
+									step="1"
+									class="slider"
+									id="dev-range"
+									oninput="document.getElementById('max-question-text').innerText = this.value"
+								/>
+							</div>
+							<div class="slider-text-container bottom-middle">
+								<p class="nowrap">
+									Max #/&nbsp;Type:&nbsp;<span id="max-question-text"></span>
+								</p>
 							</div>
 						</div>
 					</div>

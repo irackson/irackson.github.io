@@ -86,7 +86,7 @@ const $player2Button = $('#player-2-button'); // hidden onload
 const $modeContainer = $('.mode-container');
 const $includeButtons = $('.dev-option-container .dev-option-button');
 const $includeAll = $('#all');
-const $devRange = $('#dev-range');
+const $devRange = $('#max-question-text');
 
 const $devSelectButton = $('#dev-select-button');
 const $otdbDescriptionText = $('.otdb-description-text');
@@ -269,7 +269,8 @@ const runQuiz = function (triviaData: []): void {
 
 	if (modeSelected === 'dev') {
 		const includeQuestionTypes = devPreferences;
-		const maxQuestionPerType = 4;
+		const maxQuestionPerType = parseInt($devRange.text(), 10);
+		console.log(maxQuestionPerType);
 
 		match = new Match(
 			triviaData,
@@ -627,6 +628,7 @@ $includeButtons.on('click', function (e) {
 
 $devSelectButton.on('click', function (e) {
 	e.preventDefault();
+
 	$promptText.text('');
 	$promptContainer.hide();
 	$player1Button.hide();
@@ -647,6 +649,7 @@ $devSelectButton.on('click', function (e) {
 $otdbSelectButton.on('click', function (e) {
 	e.preventDefault();
 
+	$partialCreditContainer.hide();
 	$promptText.text('');
 	$promptContainer.hide();
 	$player1Button.hide();

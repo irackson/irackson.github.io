@@ -327,7 +327,6 @@ main {
 
 				.dev-all-container {
 					display: flex;
-					flex-direction: column;
 					justify-content: center;
 					align-items: center;
 					width: 100%;
@@ -341,9 +340,29 @@ main {
 						padding-top: 1%;
 						border: 2px solid silver;
 					}
+				}
 
-					.slider-container {
-						height: 20%;
+				.slider-container {
+					display: flex;
+					flex-direction: column;
+					margin-top: auto;
+					align-items: center;
+
+					input {
+						width: 10vw;
+					}
+				}
+
+				.slider-text-container {
+					display: flex;
+					justify-content: center;
+					font-family: 'Titillium Web', sans-serif;
+
+					p {
+						font-size: max(min(12px), 0.5em);
+						margin: 0;
+						padding: 0;
+						color: black;
 					}
 				}
 
@@ -377,6 +396,13 @@ main {
 						grid-row-end: 4;
 					}
 
+					.top-middle {
+						grid-column-start: 6;
+						grid-column-end: 8;
+						grid-row-start: 1;
+						grid-row-end: 4;
+					}
+
 					.top-right {
 						grid-column-start: 8;
 						grid-column-end: 13;
@@ -387,6 +413,13 @@ main {
 					.bottom-left {
 						grid-column-start: 1;
 						grid-column-end: 6;
+						grid-row-start: 8;
+						grid-row-end: 11;
+					}
+
+					.bottom-middle {
+						grid-column-start: 6;
+						grid-column-end: 8;
 						grid-row-start: 8;
 						grid-row-end: 11;
 					}
