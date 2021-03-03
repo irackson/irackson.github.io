@@ -43,7 +43,6 @@ customLog(
 
 //* top priority
 // TODO: hosting (has to be on github pages?) (fri)
-// TODO: implement slider for maxQuestionPerType instead of 49
 // TODO: handle dropdown questions (weds)
 
 //* middle priority
@@ -57,7 +56,7 @@ customLog(
 // TODO: display info about easy/medium/hard on difficulty-container hover
 // TODO: display category on hover of question #
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
-// TODO: style range slider --> add current value display
+// TODO: style range slider
 // TODO: move jquery consts to new file
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
