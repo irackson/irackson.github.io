@@ -46,7 +46,7 @@ customLog(
 // TODO: design and configure dev challenge question type selection (weds)
 /* add all questions of all types to master json in online assets (20 each, multiple choice mostly partial credit, single credit multiple choice all images/links/colors) */
 /* write function to take in json object and turn into new array based on percent desired of each question type, then _.shuffle */
-// TODO: handle fill questions (weds)
+// TODO: handle fill questions (weds) --> done on tues
 // TODO: handle dropdown questions (thurs)
 
 //* middle priority
@@ -254,7 +254,6 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 
 	$fillEl.append($sentenceContainer);
 
-	console.log(`credit: ${credit}`);
 	return $fillEl;
 };
 

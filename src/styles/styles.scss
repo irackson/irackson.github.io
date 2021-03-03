@@ -317,7 +317,92 @@ main {
 			.dev-details-container {
 				height: 75%;
 				width: 100%;
-				background-color: rgba(192, 137, 137, 0.863);
+				font-family: 'IM Fell English', serif;
+
+				.dev-option-container {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+
+				.dev-all-container {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					margin: 0;
+					padding: 0;
+
+					#include-all-button {
+						font-size: max(1em);
+						min-width: 80%;
+						padding-top: 1%;
+					}
+
+					.slider-container {
+						height: 20%;
+					}
+				}
+
+				.dev-option-button {
+					background-color: green;
+					font-size: max(0.6em);
+					color: goldenrod;
+					border: 1px solid black;
+					border-radius: 5px;
+					padding-left: 3px;
+					padding-right: 3px;
+					padding-top: 4px;
+					padding-bottom: 1px;
+					width: 50%;
+					overflow: hidden;
+					text-align: center;
+				}
+
+				.dev-grid-container {
+					display: grid;
+					width: 80%;
+					height: 100%;
+					margin: auto;
+					grid-template-columns: repeat(12, 1fr);
+					grid-template-rows: repeat(10, 1fr);
+
+					.top-left {
+						grid-column-start: 1;
+						grid-column-end: 6;
+						grid-row-start: 1;
+						grid-row-end: 4;
+					}
+
+					.top-right {
+						grid-column-start: 8;
+						grid-column-end: 13;
+						grid-row-start: 1;
+						grid-row-end: 4;
+					}
+
+					.bottom-left {
+						grid-column-start: 1;
+						grid-column-end: 6;
+						grid-row-start: 8;
+						grid-row-end: 11;
+					}
+
+					.bottom-right {
+						grid-column-start: 8;
+						grid-column-end: 13;
+						grid-row-start: 8;
+						grid-row-end: 11;
+					}
+
+					.center {
+						grid-column-start: 4;
+						grid-column-end: 10;
+						grid-row-start: 4;
+						grid-row-end: 8;
+					}
+				}
 			}
 		}
 
@@ -387,10 +472,10 @@ main {
 						border-top-right-radius: 4px;
 						border-bottom-left-radius: 4px;
 						border-bottom-right-radius: 4px;
-						padding-top: 0.5%;
-						padding-bottom: 0.5%;
+						padding-top: 0.3%;
+						padding-bottom: 0.3%;
 						color: rgb(31, 134, 100);
-						font-size: max(min(13px), 0.7em);
+						font-size: max(min(12px), 0.7em);
 						font-family: 'IM Fell English', serif;
 						font-style: italic;
 					}

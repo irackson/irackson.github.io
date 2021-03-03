@@ -65,10 +65,6 @@ export default class Match {
 		let pointsWon = 0;
 		let multiplier = 0;
 
-		console.log(correctAnswers);
-		console.log(this.response);
-		console.log('hi');
-
 		if (this.currentRound.difficulty === 'easy') {
 			multiplier = 1;
 		} else if (this.currentRound.difficulty === 'medium') {

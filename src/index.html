@@ -113,7 +113,45 @@
 					</div>
 					<!-- this dummy div added b/c weird issue with display: none, justify-content: space-between & $.show/hide -->
 					<div class="dev-dummy-spacing"></div>
-					<div class="dev-details-container">currently supports...</div>
+					<div class="dev-details-container">
+						<div class="dev-grid-container">
+							<div class="dev-option-container top-left">
+								<div class="dev-option-button" id="include-boolean-button">
+									boolean
+								</div>
+							</div>
+							<div class="dev-option-container top-right">
+								<div class="dev-option-button" id="include-multiple-button">
+									multiple
+								</div>
+							</div>
+							<div class="dev-option-container bottom-left">
+								<div class="dev-option-button" id="include-fill-button">
+									fill-in
+								</div>
+							</div>
+							<div class="dev-option-container bottom-right">
+								<div class="dev-option-button" id="include-dropdown-button">
+									dropdown
+								</div>
+							</div>
+							<div class="dev-all-container center">
+								<div class="dev-option-button" id="include-all-button">
+									ALL TYPES
+								</div>
+								<div class="slider-container">
+									<input
+										type="range"
+										min="1"
+										max="50"
+										value="25"
+										class="slider"
+										id="dev-range"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
 				</section>
 				<section class="otdb-pregame-container">
 					<div class="otdb-description-container">
