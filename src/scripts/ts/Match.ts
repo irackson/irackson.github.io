@@ -128,8 +128,7 @@ export default class Match {
 		} else if (this.currentRound.difficulty === 'hard') {
 			multiplier = 3;
 		}
-		console.log(this.response);
-		console.log(correctAnswers);
+
 		let numCorrect: number = 0;
 		let numIncorrect: number = 0;
 		for (let i = 0; i < correctAnswers.length + incorrectAnswers.length; i++) {
@@ -139,7 +138,6 @@ export default class Match {
 				numIncorrect++;
 			}
 		}
-		console.log(numCorrect);
 
 		// ? math check
 		/* console.log('CORRECT ANSWERS:');

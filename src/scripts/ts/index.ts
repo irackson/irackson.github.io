@@ -43,7 +43,6 @@ customLog(
 
 //* top priority
 // TODO: hosting (has to be on github pages?) (fri)
-// TODO: handle dropdown questions (weds)
 
 //* middle priority
 // TODO: configure multiple to handle link/images/colors (fri)
@@ -320,7 +319,6 @@ const makeDropdown = (options: string[][]): JQuery => {
 				.serializeArray()
 				// eslint-disable-next-line no-return-assign
 				.forEach((letter) => (responseString += letter.value));
-			console.log(responseString);
 			match.response = [responseString];
 		});
 
