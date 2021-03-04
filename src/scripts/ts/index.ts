@@ -36,24 +36,23 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-if (!window.location.hash && window.addEventListener) {
+/* if (window.addEventListener) {
 	window.addEventListener('load', function () {
 		setTimeout(function () {
-			document.body.requestFullscreen();
 			window.scrollTo(0, 0);
 		}, 0);
 	});
 }
 
-if (!window.location.hash && window.addEventListener) {
+if (window.addEventListener) {
 	window.addEventListener('scroll', function () {
 		setTimeout(function () {
-			document.body.requestFullscreen();
 			window.scrollTo(0, 0);
 		}, 0);
 	});
-}
-
+} */
+// Covering all browsers that support this
+document.documentElement.requestFullscreen;
 /* eslint-enable */
 
 //! ___          ___    ___  __      __   __   __   ___
