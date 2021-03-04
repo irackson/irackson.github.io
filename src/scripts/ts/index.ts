@@ -36,7 +36,7 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-/* if (window.addEventListener) {
+if (window.addEventListener) {
 	window.addEventListener('load', function () {
 		setTimeout(function () {
 			window.scrollTo(0, 0);
@@ -50,9 +50,16 @@ if (window.addEventListener) {
 			window.scrollTo(0, 0);
 		}, 0);
 	});
-} */
-// Covering all browsers that support this
-document.documentElement.requestFullscreen;
+}
+
+var elem = document.documentElement;
+/* View in fullscreen */
+function openFullscreen() {
+	if (elem.requestFullscreen) {
+		elem.requestFullscreen();
+	}
+}
+openFullscreen();
 /* eslint-enable */
 
 //! ___          ___    ___  __      __   __   __   ___
