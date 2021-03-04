@@ -128,7 +128,8 @@ export default class Match {
 		} else if (this.currentRound.difficulty === 'hard') {
 			multiplier = 3;
 		}
-
+		console.log(this.response);
+		console.log(correctAnswers);
 		let numCorrect: number = 0;
 		let numIncorrect: number = 0;
 		for (let i = 0; i < correctAnswers.length + incorrectAnswers.length; i++) {
@@ -138,6 +139,7 @@ export default class Match {
 				numIncorrect++;
 			}
 		}
+		console.log(numCorrect);
 
 		// ? math check
 		/* console.log('CORRECT ANSWERS:');
@@ -152,6 +154,8 @@ export default class Match {
 				if (numCorrect === correctAnswers.length && numIncorrect === 0) {
 					pointsWon = 1 * multiplier;
 				}
+			} else if (this.currentRound.type === 'dropdown') {
+				pointsWon = multiplier;
 			} else {
 				pointsWon =
 					(multiplier / correctAnswers.length) * (numCorrect - numIncorrect);

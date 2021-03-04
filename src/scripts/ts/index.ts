@@ -275,8 +275,6 @@ const makeDropdown = (options: string[][]): JQuery => {
 		const $letterInput = $(`<select name='${i}' id='${i}'"></select>`);
 
 		if (options[i].length === 1) {
-			$letterInput.css('border', 'black solid 1px');
-			$letterInput.css('color', 'black');
 			$letterInput.css({
 				appearance: 'none',
 				'-moz-appearance': 'none',
@@ -297,15 +295,12 @@ const makeDropdown = (options: string[][]): JQuery => {
 				)
 			);
 		} else {
-			// rgb(31, 134, 100)
-			$letterInput.css('border', 'black solid 1px');
-			$letterInput.css('color', 'black');
 			$letterInput.css({
-				'max-height': '65px',
-				'max-width': '60px',
+				'max-height': '58px',
+				'max-width:': '70px',
 				'padding-right': '0.3vw',
 			});
-
+			$letterInput.append('<option value=""></option>');
 			for (let l = 0; l < options[i].length; l++) {
 				$letterInput.append(
 					$(
@@ -317,9 +312,20 @@ const makeDropdown = (options: string[][]): JQuery => {
 			}
 		}
 
-		$wordContainer.append($letterInput);
-	}
+		// eslint-disable-next-line @typescript-eslint/no-loop-func
+		$letterInput.on('change', function () {
+			let responseString = '';
 
+			$dropdownFormContainer
+				.serializeArray()
+				// eslint-disable-next-line no-return-assign
+				.forEach((letter) => (responseString += letter.value));
+			console.log(responseString);
+			match.response = [responseString];
+		});
+
+		$dropdownFormContainer.append($letterInput);
+	}
 	$wordContainer.append($dropdownFormContainer);
 	$dropdownEl.append($wordContainer);
 	return $dropdownEl;
