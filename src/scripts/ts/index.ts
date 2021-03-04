@@ -262,6 +262,69 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 	return $fillEl;
 };
 
+const makeDropdown = (options: string[][]): JQuery => {
+	const $dropdownEl = $('<div class="dropdown-container" />');
+
+	const $wordContainer = $('<div class="word-container"></div>');
+
+	const $dropdownFormContainer = $(
+		'<form onkeydown="return event.key != \'Enter\';" id="dropdown-form"></form>'
+	);
+
+	for (let i = 0; i < options.length; i++) {
+		const $letterInput = $(`<select name='${i}' id='${i}'"></select>`);
+
+		if (options[i].length === 1) {
+			$letterInput.css('border', 'black solid 1px');
+			$letterInput.css('color', 'black');
+			$letterInput.css({
+				appearance: 'none',
+				'-moz-appearance': 'none',
+				'-webkit-appearance': 'none',
+				'padding-left': '0.5vw',
+				'padding-right': '2vw',
+				'min-width': '35px',
+				'min-height': '25px',
+			});
+
+			$letterInput.css('pointer-events', 'none');
+
+			$letterInput.append(
+				$(
+					`<option value="${options[i][0]}">${options[
+						i
+					][0].toUpperCase()}</option>`
+				)
+			);
+		} else {
+			// rgb(31, 134, 100)
+			$letterInput.css('border', 'black solid 1px');
+			$letterInput.css('color', 'black');
+			$letterInput.css({
+				'max-height': '65px',
+				'max-width': '60px',
+				'padding-right': '0.3vw',
+			});
+
+			for (let l = 0; l < options[i].length; l++) {
+				$letterInput.append(
+					$(
+						`<option value="${options[i][l]}">${options[i][
+							l
+						].toUpperCase()}</option>`
+					)
+				);
+			}
+		}
+
+		$wordContainer.append($letterInput);
+	}
+
+	$wordContainer.append($dropdownFormContainer);
+	$dropdownEl.append($wordContainer);
+	return $dropdownEl;
+};
+
 const runQuiz = function (triviaData: []): void {
 	player1 = new Player('Player One', 0);
 	player2 = new Player('Player Two', 0);
@@ -269,7 +332,6 @@ const runQuiz = function (triviaData: []): void {
 	if (modeSelected === 'dev') {
 		const includeQuestionTypes = devPreferences;
 		const maxQuestionPerType = parseInt($devRange.text(), 10);
-		console.log(maxQuestionPerType);
 
 		match = new Match(
 			triviaData,
@@ -306,8 +368,6 @@ const runQuiz = function (triviaData: []): void {
 		datatype, // ? optional key. assume 'text' if undefined. can be text, link, img, color
 		credit, // ? optional key indicating partial credit. assume single (no partial) if undefined
 		case: testingCase, // ? optional key on questions used to test code
-		hint, // ? optional key on some questions
-		reference, // ? optional key on some questions for answer source
 		category, // ? optional key describing category
 	} = match.currentRound;
 
@@ -318,6 +378,10 @@ const runQuiz = function (triviaData: []): void {
 
 		if (credit === undefined) {
 			credit = 'single';
+		}
+
+		if (incorrectAnswers === undefined) {
+			incorrectAnswers = [];
 		}
 
 		try {
@@ -376,8 +440,6 @@ const runQuiz = function (triviaData: []): void {
 		datatype = match.currentRound.datatype;
 		credit = match.currentRound.credit;
 		testingCase = match.currentRound.case;
-		hint = match.currentRound.hint;
-		reference = match.currentRound.reference;
 		category = match.currentRound.category;
 
 		cleanData();
@@ -445,7 +507,7 @@ const runQuiz = function (triviaData: []): void {
 		} else if (type === 'fill') {
 			$responseEl = makeFill(incorrectAnswers, credit);
 		} else if (type === 'dropdown') {
-			// $responseEl = makeDropdown();
+			$responseEl = makeDropdown(options);
 		}
 
 		$responseContainer.append($responseEl.eq(0));
@@ -596,7 +658,6 @@ $includeAll.on('click', function (e) {
 		devPreferences = [];
 		$includeAll.css('border', '1px solid black');
 	}
-	console.log(devPreferences);
 });
 
 $includeButtons.on('click', function (e) {
@@ -622,7 +683,6 @@ $includeButtons.on('click', function (e) {
 		devPreferences = devPreferences.filter((el) => el !== type);
 		$typeEl.css('border', '1px solid black');
 	}
-	console.log(devPreferences);
 });
 
 $devSelectButton.on('click', function (e) {
@@ -642,13 +702,11 @@ $devSelectButton.on('click', function (e) {
 	$includeButtons.css('border', '1px solid black');
 	devPreferences = allQuestionTypes;
 	modeSelected = 'dev';
-	console.log(devPreferences);
 });
 
 $otdbSelectButton.on('click', function (e) {
 	e.preventDefault();
 
-	$partialCreditContainer.hide();
 	$promptText.text('');
 	$promptContainer.hide();
 	$player1Button.hide();
@@ -665,13 +723,11 @@ $otdbSelectButton.on('click', function (e) {
 	$otdbPregameContainer.show();
 
 	modeSelected = 'otdb';
-	console.log(devPreferences);
 });
 
 $playButton.on('click', function (e) {
 	e.preventDefault();
-	console.log(modeSelected);
-	console.log(`prefs: ${devPreferences}`);
+	$partialCreditContainer.hide();
 
 	if (gameOn) {
 		// reset to reload state
