@@ -36,30 +36,8 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-if (window.addEventListener) {
-	window.addEventListener('load', function () {
-		setTimeout(function () {
-			window.scrollTo(0, 0);
-		}, 0);
-	});
-}
+document.documentElement.requestFullscreen();
 
-if (window.addEventListener) {
-	window.addEventListener('scroll', function () {
-		setTimeout(function () {
-			window.scrollTo(0, 0);
-		}, 0);
-	});
-}
-
-var elem = document.documentElement;
-/* View in fullscreen */
-function openFullscreen() {
-	if (elem.requestFullscreen) {
-		elem.requestFullscreen();
-	}
-}
-openFullscreen();
 /* eslint-enable */
 
 //! ___          ___    ___  __      __   __   __   ___
