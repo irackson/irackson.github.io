@@ -39,6 +39,16 @@ customLog(
 if (!window.location.hash && window.addEventListener) {
 	window.addEventListener('load', function () {
 		setTimeout(function () {
+			document.body.requestFullscreen();
+			window.scrollTo(0, 0);
+		}, 0);
+	});
+}
+
+if (!window.location.hash && window.addEventListener) {
+	window.addEventListener('scroll', function () {
+		setTimeout(function () {
+			document.body.requestFullscreen();
 			window.scrollTo(0, 0);
 		}, 0);
 	});
