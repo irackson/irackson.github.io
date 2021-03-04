@@ -36,8 +36,6 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-document.documentElement.requestFullscreen();
-
 /* eslint-enable */
 
 //! ___          ___    ___  __      __   __   __   ___
