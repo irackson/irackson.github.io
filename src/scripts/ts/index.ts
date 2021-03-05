@@ -614,7 +614,7 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 			type !== 'any' ? `&type=${type}` : ''
 		}&encode=url3986`;
 	} else {
-		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/dev-challenge.json';
+		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/challenge.json';
 	}
 
 	$.ajax({

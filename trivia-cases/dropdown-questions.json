@@ -1,0 +1,152 @@
+{
+	"results": [
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Form one of the thirteen possible 5 letter words in the 'Words With Friends' dictionary.",
+			"type": "dropdown",
+			"options": [
+				["a"],
+				["b", "d", "f", "g", "l", "n", "s", "u", "x"],
+				["a", "b", "e", "g", "i", "n", "o", "r", "w", "y"],
+				["a", "e", "h", "i", "o", "r", "s", "u"],
+				["m"]
+			],
+			"correct_answer": [
+				"axiom",
+				"abohm",
+				"abysm",
+				"album",
+				"algum",
+				"abeam",
+				"afoam",
+				"annum",
+				"aswim",
+				"agism",
+				"aurum",
+				"adeem",
+				"alarm"
+			],
+			"reference": "https://word.tips/unscramble/_/words-start-with/A/words-end-in/M/length/5",
+			"credit": "partial"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Form one of the eight possible 4 letter words in the 'Words With Friends' dictionary.",
+			"type": "dropdown",
+			"options": [
+				["p"],
+				["a", "e", "i", "l", "o", "r", "u"],
+				["a", "i", "n", "o", "u"],
+				["g"]
+			],
+			"correct_answer": [
+				"plug",
+				"pung",
+				"pang",
+				"ping",
+				"pong",
+				"peag",
+				"prig",
+				"prog"
+			],
+			"reference": "https://word.tips/unscramble/_/words-start-with/P/words-end-in/G/length/4",
+			"credit": "partial"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Form one of the four possible 5 letter words in the 'Words With Friends' dictionary.",
+			"type": "dropdown",
+			"options": [
+				["g"],
+				["l", "o", "u"],
+				["i", "l", "o", "u"],
+				["a", "g", "n"],
+				["g"]
+			],
+			"correct_answer": ["glugg", "glogg", "gulag", "going"],
+			"reference": "https://word.tips/unscramble/_/words-start-with/G/words-end-in/G/length/5",
+			"credit": "partial"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Form one of the forty possible 8 letter Scrabble words",
+			"type": "dropdown",
+			"options": [
+				[
+					"a",
+					"b",
+					"c",
+					"d",
+					"e",
+					"f",
+					"g",
+					"h",
+					"j",
+					"l",
+					"m",
+					"n",
+					"p",
+					"r",
+					"t",
+					"v",
+					"w"
+				],
+				["a", "b", "e", "i", "o", "u"],
+				["s"],
+				["t"],
+				["e", "i", "l", "m", "n", "p", "r"],
+				["e", "i", "o", "r", "u"],
+				["s"],
+				["e", "s", "t"]
+			],
+			"correct_answer": [
+				"absterse",
+				"abstruse",
+				"bustiest",
+				"costless",
+				"destress",
+				"distress",
+				"distrust",
+				"dustiest",
+				"dustless",
+				"eastmost",
+				"fastness",
+				"fostress",
+				"fustiest",
+				"gastness",
+				"gustiest",
+				"gustless",
+				"hastiest",
+				"hostless",
+				"justness",
+				"listless",
+				"lustiest",
+				"lustless",
+				"mastless",
+				"mastress",
+				"mistiest",
+				"mistress",
+				"mistrist",
+				"mistrust",
+				"mustiest",
+				"nastiest",
+				"pastiest",
+				"pastness",
+				"postpose",
+				"restless",
+				"rustiest",
+				"rustless",
+				"tastiest",
+				"testiest",
+				"vastness",
+				"westmost"
+			],
+			"reference": "https://www.crosswordsolver.org/solve/--st--s-/0",
+			"credit": "partial"
+		}
+	]
+}
