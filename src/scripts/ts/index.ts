@@ -247,8 +247,8 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 			}
 
 			parsed[thisID] = $thisSpan.text();
-			const responseString = parsed.join(' ');
-
+			const responseString = parsed.join(' ').toLowerCase();
+			console.log(responseString);
 			match.response = [responseString];
 		});
 	}
@@ -410,6 +410,12 @@ const runQuiz = function (triviaData: []): void {
 				} catch (error) {
 					customLog(`${incorrectAnswers[i]} decode error`, 'info');
 					customLog(error, 'error');
+				}
+			}
+
+			if (type === 'fill') {
+				for (let i = 0; i < correctAnswer.length; i++) {
+					correctAnswer[i] = correctAnswer[i].toLowerCase();
 				}
 			}
 
