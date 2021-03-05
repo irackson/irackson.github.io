@@ -1,14 +1,63 @@
 {
 	"results": [
 		{
-			"difficulty": "medium",
-			"datatype": "text",
-			"question": "What percentage should be added to 40 to make it 50?",
+			"difficulty": "easy",
+			"datatype": "color",
+			"question": "Select the color pair.",
 			"type": "multiple",
-			"correct_answer": "25%",
-			"incorrect_answers": ["15%", "75%", "80%"],
-			"credit": "single",
-			"case": ["dev", "multiple", "text", "single"]
+			"correct_answer": ["#4DD2FF", "#4DD2FF"],
+			"incorrect_answers": ["#EA6F4B", "#EA7256", "#AC9090", "#D0C0C0"],
+			"credit": "partial"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "color",
+			"question": "Select the one color that's not like the others.",
+			"type": "multiple",
+			"correct_answer": "#862A51",
+			"incorrect_answers": [
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252",
+				"#8B2252"
+			],
+			"credit": "single"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "img",
+			"question": "Select the shortest GIF.",
+			"type": "multiple",
+			"correct_answer": "https://media.giphy.com/media/8lZ3GBbIbqBsn6pCNS/giphy.gif",
+			"incorrect_answers": [
+				"https://media.giphy.com/media/J1ugoU2Dis6DWWAoga/giphy.gif",
+				"https://media.giphy.com/media/Lb3m6dxZRHkbhRgwIa/giphy.gif",
+				"https://media.giphy.com/media/3dbLNOL4qdvLZqPK3M/giphy.gif"
+			],
+			"credit": "single"
+		},
+		{
+			"difficulty": "hard",
+			"datatype": "img",
+			"question": "Which characters are in the brady bunch?",
+			"type": "multiple",
+			"correct_answer": [
+				"https://media.giphy.com/media/WiIC5AUPjlHxK/giphy.gif",
+				"https://media.giphy.com/media/xpY5NSHUDDaN2/giphy.gif",
+				"https://media.giphy.com/media/k13LPAMBfhfB6/giphy.gif",
+				"https://media.giphy.com/media/1UUZDJNTvgpSGbhdkc/giphy.gif"
+			],
+			"incorrect_answers": [
+				"https://media.giphy.com/media/l0ExayQDzrI2xOb8A/giphy.gif",
+				"https://media.giphy.com/media/Jxhb1p6wm1eTu/giphy.gif",
+				"https://media.giphy.com/media/5xjCPLiKMrfm8/giphy.gif",
+				"https://media.giphy.com/media/hmpqVzwPARTmo/giphy.gif",
+				"https://media.giphy.com/media/12J1QXPeD10z9m/giphy.gif"
+			],
+			"credit": "partial"
 		},
 		{
 			"difficulty": "hard",
@@ -21,57 +70,71 @@
 			"case": ["dev", "multiple", "text", "partial"]
 		},
 		{
-			"difficulty": "easy",
-			"datatype": "link",
-			"question": "Which of the URLs link to a page not found?",
-			"type": "multiple",
-			"correct_answer": "https://jedi.mycohort.download/second-language/week-24/day-3/",
-			"incorrect_answers": [
-				"https://jedi.mycohort.download/coding-challenges#reverseupcasestring",
-				"www.mycohort.com",
-				"https://jedi.mycohort.download/frontend-fundamentals/week-3/day-3/labs/my-developer-skills-lab/"
-			],
-			"hint": "Familiarize yourself with the curriculum! Also, mycohort is currently for sale by HugeDomains, but nonetheless is a valid endpoint.",
-			"credit": "single",
-			"case": ["dev", "multiple", "link"]
-		},
-		{
-			"difficulty": "easy",
+			"difficulty": "hard",
 			"datatype": "img",
-			"question": "Whose personal GitHub account has the highest contribution count over the last year?",
+			"question": "Select the GIFs that represent feelings that the developer experienced while working on this project.",
 			"type": "multiple",
-			"correct_answer": "https://avatars.githubusercontent.com/u/52634838?s=460&u=aa05b8fcee5a38a55b56857aa379dce4887b25ca&v=4",
-			"incorrect_answers": [
-				"https://avatars.githubusercontent.com/u/58452223?s=460&u=79de1747e237fcac827d9842a93b638cc21802d7&v=4",
-				"https://avatars.githubusercontent.com/u/66440550?s=460&u=8efbed4567f07197b4ad49e0121f04173e2251f1&v=4",
-				"https://avatars.githubusercontent.com/u/936204?s=460&u=1c75ba3339476e753d3a6f8f067b1057220a4171&v=4",
-				"https://avatars.githubusercontent.com/u/17891125?s=460&u=abf4021515edef127878f03b5d5ccb3c6fc31399&v=4"
+			"correct_answer": [
+				"https://media.giphy.com/media/h36vh423PiV9K/giphy.gif",
+				"https://media.giphy.com/media/a0h7sAqON67nO/giphy.gif",
+				"https://media.giphy.com/media/l2RnudaRyTAW6xDnW/giphy.gif",
+				"https://media.giphy.com/media/3o8doT9BL7dgtolp7O/giphy.gif",
+				"https://media.giphy.com/media/PPcoaMBKaY8vu/giphy.gif"
 			],
-			"hint": "Stalk them for yourself and see!",
-			"credit": "single",
-			"case": ["dev", "multiple", "img"]
+			"incorrect_answers": [
+				"https://media.giphy.com/media/xUNd9IjWPKRQR59yr6/giphy.gif"
+			],
+			"credit": "partial"
 		},
 		{
-			"category": "Politics",
+			"difficulty": "hard",
+			"datatype": "img",
+			"question": "Select the logos of the companies that are public.",
 			"type": "multiple",
+			"correct_answer": [
+				"https://sunrisemarketplace.com/wp-content/uploads/2020/05/4093_SMP-berkshire-hathaway-logo.jpg",
+				"https://yt3.ggpht.com/ytc/AAUvwngFRCJovEsRNtlb7r2iMq-ywZLWuEXeu-1io9fezQ=s900-c-k-c0x00ffffff-no-rj",
+				"https://seeklogo.com/images/I/ICBC-logo-71BB1FD4EA-seeklogo.com.png",
+				"https://res-3.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1495180016/d1tn4uecn86kai1csgsv.png",
+				"https://pbs.twimg.com/profile_images/1067242179955896320/mKdx6PgL_400x400.jpg"
+			],
+			"incorrect_answers": [
+				"https://pbs.twimg.com/profile_images/1195385334609203201/J51JvRDZ_400x400.png",
+				"https://i.pinimg.com/originals/01/37/e0/0137e0bb2e393cb1aaba38bd23c4d4a7.png",
+				"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Epic_Games_logo.svg/882px-Epic_Games_logo.svg.png"
+			],
+			"credit": "partial"
+		},
+		{
 			"difficulty": "medium",
-			"question": "Due%20to%20the%20Nagoya%20Resolution%2C%20China%20agreed%20to%20allow%20Taiwan%20to%20compete%20separately%20in%20international%20sporting%20events%20under%20what%20name%3F",
-			"correct_answer": "Chinese%20Taipei",
+			"datatype": "color",
+			"question": "Select the one color that's not like the others.",
+			"type": "multiple",
+			"correct_answer": "#FFFF4D",
 			"incorrect_answers": [
-				"Chinese%20Taiwan",
-				"Republic%20of%20Taiwan",
-				"Republic%20of%20Taipei%20"
+				"#FFFF00",
+				"#FFFF00",
+				"#FFFF00",
+				"#FFFF00",
+				"#FFFF00"
 			],
-			"case": ["otdb", "multiple", "medium"]
+			"credit": "single"
 		},
 		{
-			"category": "Politics",
+			"difficulty": "hard",
+			"datatype": "color",
+			"question": "Select the three identical colors.",
 			"type": "multiple",
-			"difficulty": "easy",
-			"question": "How%20many%20people%20are%20in%20the%20U.S.%20House%20of%20Representatives%3F",
-			"correct_answer": "435",
-			"incorrect_answers": ["260", "415", "50"],
-			"case": ["otdb", "multiple", "easy"]
+			"correct_answer": ["#7FFF00", "#7FFF00", "#7FFF00"],
+			"incorrect_answers": [
+				"#00FFAA",
+				"#4DFFC3",
+				"#99FFDD",
+				"#00BFFF",
+				"#4DD2FF",
+				"#4DD2FF"
+			],
+			"credit": "partial"
 		}
 	]
 }

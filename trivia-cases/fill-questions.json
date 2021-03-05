@@ -5,8 +5,8 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "You can't have your cake and eat it too",
-			"incorrect_answers": ["You can't have your _ and _ it too"],
+			"correct_answer": "you can't have your cake and eat it too",
+			"incorrect_answers": ["you can't have your _ and _ it too"],
 			"credit": "single"
 		},
 		{
@@ -14,8 +14,8 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blank appropriately.",
 			"type": "fill",
-			"correct_answer": "A rolling stone gathers no moss",
-			"incorrect_answers": ["A rolling stone gathers no _"],
+			"correct_answer": "a rolling stone gathers no moss",
+			"incorrect_answers": ["a rolling stone gathers no _"],
 			"credit": "single"
 		},
 		{
@@ -23,8 +23,8 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "An ounce of protection is worth a pound of cure",
-			"incorrect_answers": ["An _ of protection is worth a _ of cure"],
+			"correct_answer": "an ounce of protection is worth a pound of cure",
+			"incorrect_answers": ["an _ of protection is worth a _ of cure"],
 			"credit": "single"
 		},
 		{
@@ -32,8 +32,50 @@
 			"datatype": "text",
 			"question": "Complete the proverb by filling in the blanks appropriately.",
 			"type": "fill",
-			"correct_answer": "The grass is greener on the other side of the fence",
-			"incorrect_answers": ["The grass is greener on the other side _ _ _"],
+			"correct_answer": "the grass is greener on the other side of the fence",
+			"incorrect_answers": ["the grass is greener on the other side _ _ _"],
+			"credit": "single"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Complete John Lennon's famous quote by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "life is what happens when you're busy making other plans",
+			"incorrect_answers": [
+				"_ is what happens when you're busy making other plans"
+			],
+			"credit": "single"
+		},
+		{
+			"difficulty": "medium",
+			"datatype": "text",
+			"question": "Complete this famous quote from The Usual Suspects (1995) by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "the greatest trick the devil ever pulled was convincing the world he didn't exist",
+			"incorrect_answers": [
+				"the greatest _ the _ ever pulled was convincing the world he didn't _"
+			],
+			"credit": "single"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Complete this song lyric from Eminem's 'Lose Yourself' by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "you only get one shot, do not miss your chance to blow",
+			"incorrect_answers": [
+				"you only get one shot, do not miss your chance to _"
+			],
+			"credit": "single"
+		},
+		{
+			"difficulty": "easy",
+			"datatype": "text",
+			"question": "Complete the popular saying amongst programmers by filling in the blanks appropriately.",
+			"type": "fill",
+			"correct_answer": "google is a developer's best friend",
+			"incorrect_answers": ["_ is a developer's best _"],
 			"credit": "single"
 		}
 	]
