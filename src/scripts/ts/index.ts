@@ -1,10 +1,9 @@
-/* eslint-disable */
-require('../../styles/styles.scss');
+import $ from 'jquery';
+import _ from 'lodash';
 import Match from './Match';
 import Player from './Player';
 
-import $ from 'jquery';
-import _ from 'lodash';
+require('../../styles/styles.scss');
 
 function customLog(message: any, color = 'black'): void {
 	switch (color) {
@@ -36,42 +35,37 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-/* eslint-enable */
-
 //! ___          ___    ___  __      __   __   __   ___
 //!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
 //!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
 
 //* top priority
-// TODO: hosting (has to be on github pages?) (fri)
+// TODO: readme.md
+/* explanations of the technologies used, the approach taken, a link to your live site, installation instructions, unsolved problems, etc.
+ */
+// TODO: configure multiple to handle link/images/colors (fri)
+// TODO: onload / no mode selected response container --> welcome page (fri)
+/* explain easy/medium/hard --> 1/2/3 points
+explain indicator for partial credit means you will gain a fraction of a the total points awarded for a particular question and loose a fraction for each wrong answer selected */
 
 //* middle priority
-// TODO: configure multiple to handle link/images/colors (fri)
-// TODO: Countdown animation (thurs)
-/* .visual-container --> goes to next question if neither player has selected anything. Implement by submitting an empty array to match.processResponse, and set both players to red text color */
-// TODO: onload / no mode selected response container --> welcome page (fri)
+// TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
+// TODO: swap every 2nd &rdquo with &ldquo
 
 //* low priority
-// TODO: swap every 2nd &rdquo with &ldquo
-// TODO: display info about easy/medium/hard on difficulty-container hover
-// TODO: display category on hover of question #
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
 // TODO: style range slider
 // TODO: move jquery consts to new file
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
 const $playButton = $('#play-button');
 
 const $inactiveGameContainer = $('.inactive-game-container');
 
 const $activeGameContainer = $('.active-game-container'); // hidden onload
-const $ratioContainer = $('.ratio-container');
 const $p1ScoreText = $('#player-1-points');
 const $p2ScoreText = $('#player-2-points');
 const $maxPointsText = $('.max-points');
 const $divisionSpacing = $('.division-spacing');
-const $animationContainer = $('.visual-container');
 const $resultStatsContainer = $('result-stats-container');
 const $winnerText = $('#winner-text');
 const $questionStatsContainer = $('.question-stats-container');
@@ -102,7 +96,6 @@ const otdbParametersForm: HTMLFormElement = document.getElementById(
 
 const $responseContainer = $('.response-container'); // hidden onload
 
-/* eslint-enable @typescript-eslint/no-unused-vars */
 let gameOn: boolean = false;
 let modeSelected: string | undefined;
 const allQuestionTypes = ['boolean', 'multiple', 'fill', 'dropdown'];
@@ -361,8 +354,6 @@ const runQuiz = function (triviaData: []): void {
 	}
 	$divisionSpacing.html(spaceString);
 
-	/* eslint-disable @typescript-eslint/no-unused-vars */
-
 	let {
 		type, // boolean, multiple, rank, grid, blank, dropdown
 		difficulty, // easy --> 1 point, medium --> 2, hard --> 3
@@ -372,7 +363,6 @@ const runQuiz = function (triviaData: []): void {
 		options, // ! key only on type: dropdown
 		datatype, // ? optional key. assume 'text' if undefined. can be text, link, img, color
 		credit, // ? optional key indicating partial credit. assume single (no partial) if undefined
-		case: testingCase, // ? optional key on questions used to test code
 		category, // ? optional key describing category
 	} = match.currentRound;
 
@@ -444,7 +434,6 @@ const runQuiz = function (triviaData: []): void {
 		options = match.currentRound.options;
 		datatype = match.currentRound.datatype;
 		credit = match.currentRound.credit;
-		testingCase = match.currentRound.case;
 		category = match.currentRound.category;
 
 		cleanData();

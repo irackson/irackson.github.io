@@ -61,67 +61,80 @@
 								<p class="division-spacing"></p>
 								<p class="max-points"></p>
 							</div>
-							<canvas id="gameCanvas" class="visual-container">
-								<!-- https://www.youtube.com/watch?v=DeqE2yn3v6Q -->
-								<script>
-									// declare variables
-									const FPS = 30;
-									var bs = 30;
-									var bx, by;
-									var xv, yv;
-									var canvas, context;
+							<div class="visual-container">
+								<div class="svg-container">
+									<!-- adapted from https://codepen.io/tmrDevelops/pen/jEYRKY -->
+									<div class="svg">
+										<svg
+											viewBox="0 0 350 500"
+											xmlns="http://www.w3.org/2000/svg"
+											xmlns:xlink="http://www.w3.org/1999/xlink"
+											version="1.1"
+											overflow="visible"
+										>
+											<defs>
+												<path
+													id="ball"
+													d="m86.429,0l-72.855,0c0,0 -13.573,0 -13.573,13.573l0,72.853c0,0 0,13.574 13.573,13.574l72.854,0c0,0 13.571,0 13.571,-13.574l0,-72.853c0.002,0 0.002,-13.573 -13.57,-13.573zm-32.11,87.828c-1.636,1.617 -3.91,2.428 -6.824,2.428c-2.985,0 -5.299,-0.792 -6.933,-2.373c-1.637,-1.582 -2.451,-3.812 -2.451,-6.691c0,-2.985 0.8,-5.242 2.398,-6.771c1.601,-1.527 3.928,-2.291 6.984,-2.291c2.949,0 5.232,0.781 6.852,2.348c1.616,1.562 2.425,3.801 2.425,6.717c0.002,2.805 -0.817,5.017 -2.451,6.633zm17.595,-48.599c-1.776,2.846 -5.153,6.043 -10.132,9.599c-3.411,2.524 -5.57,4.442 -6.477,5.76c-0.907,1.313 -1.359,3.039 -1.359,5.173l0,3.198l-14.131,0l0,-3.944c0,-3.412 0.729,-6.383 2.187,-8.904c1.458,-2.525 4.124,-5.209 7.999,-8.053c3.732,-2.666 6.192,-4.834 7.385,-6.507c1.19,-1.67 1.785,-3.534 1.785,-5.598c0,-2.31 -0.853,-4.069 -2.56,-5.278c-1.705,-1.208 -4.088,-1.812 -7.145,-1.812c-5.332,0 -11.412,1.742 -18.235,5.227l-5.811,-11.679c7.926,-4.443 16.334,-6.666 25.219,-6.666c7.321,0 13.145,1.76 17.462,5.278c4.32,3.52 6.479,8.211 6.479,14.078c0.001,3.907 -0.889,7.285 -2.666,10.128z"
+												/>
 
-									//load canvas
-									canvas = document.getElementById('gameCanvas');
-									context = canvas.getContext('2d');
+												<filter
+													id="front"
+													filterUnits="userSpaceOnUse"
+													width="400"
+													height="400"
+												>
+													<feSpecularLighting
+														in="blur"
+														lighting-color="hsla(255,255%,255%,.8)"
+														surfaceScale="25"
+														specularExponent="12"
+														specularConstant="1"
+														result="specular"
+													></feSpecularLighting>
+													<feComposite
+														in="specular"
+														in2="SourceGraphic"
+														operator="atop"
+													/>
+												</filter>
+											</defs>
 
-									// set up interval (game loop)
-									setInterval(update, 1000 / FPS);
-
-									// ball starting position
-									bx = canvas.width / 2;
-									by = canvas.height / 2;
-
-									// random ball starting speed (between 100 and 200 pps)
-									xv = Math.floor(Math.random() * 10 + 20) / FPS;
-									yv = Math.floor(Math.random() * 10 + 20) / FPS;
-
-									// random ball direction
-									if (Math.floor(Math.random() * 2) === 0) {
-										xv = -xv;
-									}
-									if (Math.floor(Math.random() * 2) === 0) {
-										yv = -yv;
-									}
-									// update function
-									function update() {
-										// move the ball
-										bx += xv;
-										by += yv;
-
-										// bounce the ball off each wall
-										if (bx - bs / 2 < 0 && xv < 0) {
-											xv = -xv;
-										}
-										if (bx + bs / 2 > canvas.width && xv > 0) {
-											xv = -xv;
-										}
-										if (by - bs / 2 < 0 && yv < 0) {
-											yv = -yv;
-										}
-										if (by + bs / 2 > canvas.height && yv > 0) {
-											yv = -yv;
-										}
-
-										// clear previous ball
-										context.clearRect(0, 0, canvas.width, canvas.height);
-
-										// draw new ball
-										context.fillStyle = 'goldenrod';
-										context.fillRect(bx - bs / 2, by - bs / 2, bs, bs);
-									}
-								</script>
-							</canvas>
+											<use xlink:href="#ball" fill="gold">
+												<animate
+													attributeName="x"
+													begin="0s"
+													dur="5s"
+													calcMode="linear"
+													keyTimes="0;0.5;1"
+													values="0;400;0"
+													repeatCount="indefinite"
+												/>
+												<animate
+													attributeName="y"
+													begin="0s"
+													dur="7s"
+													calcMode="linear"
+													keyTimes="0;0.5;1"
+													values="0;400;0"
+													repeatCount="indefinite"
+												/>
+												<animate
+													attributeName="y"
+													begin="0s"
+													dur="1s"
+													calcMode="spline"
+													keyTimes="0;0.5;1"
+													keySplines="0.33 0.67 0.67 1;0.33 0 0.67 0.67"
+													values="0;-100;0"
+													additive="sum"
+													repeatCount="indefinite"
+												/>
+											</use>
+										</svg>
+									</div>
+								</div>
+							</div>
 							<div class="ratio-container">
 								<p id="player-2-points"></p>
 								<p class="division-spacing"></p>
