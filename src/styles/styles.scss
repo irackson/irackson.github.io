@@ -346,6 +346,7 @@ main {
 				height: 75%;
 				width: 100%;
 				font-family: 'IM Fell English', serif;
+				user-select: none;
 
 				.dev-option-container {
 					display: flex;
@@ -526,6 +527,7 @@ main {
 					align-items: center;
 					padding: 0px;
 					margin: 0px;
+					user-select: none;
 
 					ul {
 						list-style: none;
@@ -621,6 +623,7 @@ main {
 					margin: 0;
 					padding: 0;
 					word-break: break-word;
+					user-select: none;
 
 					-webkit-hyphens: auto;
 					-ms-hyphens: auto;

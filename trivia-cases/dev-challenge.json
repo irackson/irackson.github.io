@@ -71,19 +71,6 @@
 		},
 		{
 			"difficulty": "easy",
-			"datatype": "link",
-			"question": "Which of the URLs link to a page not found?",
-			"type": "multiple",
-			"correct_answer": "https://jedi.mycohort.download/second-language/week-24/day-3/",
-			"incorrect_answers": [
-				"https://jedi.mycohort.download/coding-challenges#reverseupcasestring",
-				"www.mycohort.com",
-				"https://jedi.mycohort.download/frontend-fundamentals/week-3/day-3/labs/my-developer-skills-lab/"
-			],
-			"credit": "single"
-		},
-		{
-			"difficulty": "easy",
 			"datatype": "img",
 			"question": "Whose personal GitHub account has the highest contribution count over the last year?",
 			"type": "multiple",
@@ -128,11 +115,11 @@
 			"datatype": "img",
 			"question": "Select the shortest GIF.",
 			"type": "multiple",
-			"correct_answer": "https://giphy.com/embed/8lZ3GBbIbqBsn6pCNS",
+			"correct_answer": "https://media.giphy.com/media/8lZ3GBbIbqBsn6pCNS/giphy.gif",
 			"incorrect_answers": [
-				"https://giphy.com/embed/J1ugoU2Dis6DWWAoga",
-				"https://giphy.com/embed/Lb3m6dxZRHkbhRgwIa",
-				"https://giphy.com/embed/3dbLNOL4qdvLZqPK3M"
+				"https://media.giphy.com/media/J1ugoU2Dis6DWWAoga/giphy.gif",
+				"https://media.giphy.com/media/Lb3m6dxZRHkbhRgwIa/giphy.gif",
+				"https://media.giphy.com/media/3dbLNOL4qdvLZqPK3M/giphy.gif"
 			],
 			"credit": "single"
 		},
@@ -142,17 +129,17 @@
 			"question": "Which characters are in the brady bunch?",
 			"type": "multiple",
 			"correct_answer": [
-				"https://giphy.com/embed/WiIC5AUPjlHxK",
-				"https://giphy.com/embed/xpY5NSHUDDaN2",
-				"https://giphy.com/embed/k13LPAMBfhfB6",
-				"https://giphy.com/embed/1UUZDJNTvgpSGbhdkc"
+				"https://media.giphy.com/media/WiIC5AUPjlHxK/giphy.gif",
+				"https://media.giphy.com/media/xpY5NSHUDDaN2/giphy.gif",
+				"https://media.giphy.com/media/k13LPAMBfhfB6/giphy.gif",
+				"https://media.giphy.com/media/1UUZDJNTvgpSGbhdkc/giphy.gif"
 			],
 			"incorrect_answers": [
-				"https://giphy.com/embed/l0ExayQDzrI2xOb8A",
-				"https://giphy.com/embed/Jxhb1p6wm1eTu",
-				"https://giphy.com/embed/5xjCPLiKMrfm8",
-				"https://giphy.com/embed/hmpqVzwPARTmo",
-				"https://giphy.com/embed/12J1QXPeD10z9m"
+				"https://media.giphy.com/media/l0ExayQDzrI2xOb8A/giphy.gif",
+				"https://media.giphy.com/media/Jxhb1p6wm1eTu/giphy.gif",
+				"https://media.giphy.com/media/5xjCPLiKMrfm8/giphy.gif",
+				"https://media.giphy.com/media/hmpqVzwPARTmo/giphy.gif",
+				"https://media.giphy.com/media/12J1QXPeD10z9m/giphy.gif"
 			],
 			"credit": "partial"
 		},

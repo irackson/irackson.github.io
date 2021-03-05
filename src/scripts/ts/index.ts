@@ -35,47 +35,37 @@ customLog(
 		${randomIntFromInterval(0, 255)})`
 );
 
-//! ___          ___    ___  __      __   __   __   ___
-//!  |  |  |\/| |__      |  /  \    /  ` /  \ |  \ |__
-//!  |  |  |  | |___     |  \__/    \__, \__/ |__/ |___
-
 //* top priority
 // TODO: readme.md
 /* explanations of the technologies used, the approach taken, a link to your live site, installation instructions, unsolved problems, etc.
  */
-// TODO: configure multiple to handle link/images/colors (fri)
 // TODO: onload / no mode selected response container --> welcome page (fri)
 /* explain easy/medium/hard --> 1/2/3 points
 explain indicator for partial credit means you will gain a fraction of a the total points awarded for a particular question and loose a fraction for each wrong answer selected */
-// TODO: dropdown and fill-in lock button reset after select option
+// TODO: have a minimum of 8 questions per type
 
 //* middle priority
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
-// TODO: swap every 2nd &rdquo with &ldquo
-
-//* low priority
-// TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
-// TODO: style range slider
-// TODO: move jquery consts to new file
 
 const $playButton = $('#play-button');
 
 const $inactiveGameContainer = $('.inactive-game-container');
 
-const $activeGameContainer = $('.active-game-container'); // hidden onload
+const $activeGameContainer = $('.active-game-container');
 const $p1ScoreText = $('#player-1-points');
 const $p2ScoreText = $('#player-2-points');
 const $maxPointsText = $('.max-points');
 const $divisionSpacing = $('.division-spacing');
 const $resultStatsContainer = $('result-stats-container');
 const $winnerText = $('#winner-text');
+const $visualContainer = $('.visual-container');
 const $questionStatsContainer = $('.question-stats-container');
 const $questionNumberText = $('#question-number-text');
 const $partialCreditContainer = $('.partial-credit-container');
 const $questionDifficultyText = $('#question-difficulty-text');
 
-const $player1Button = $('#player-1-button'); // hidden onload
-const $player2Button = $('#player-2-button'); // hidden onload
+const $player1Button = $('#player-1-button');
+const $player2Button = $('#player-2-button');
 
 const $modeContainer = $('.mode-container');
 const $includeButtons = $('.dev-option-container .dev-option-button');
@@ -88,14 +78,14 @@ const $otdbSelectButton = $('#otdb-select-button');
 const $promptText = $('#prompt');
 const $promptContainer = $('.prompt-container');
 
-const $devPregameContainer = $('.dev-pregame-container'); // hidden onload
+const $devPregameContainer = $('.dev-pregame-container');
 
-const $otdbPregameContainer = $('.otdb-pregame-container'); // hidden onload
+const $otdbPregameContainer = $('.otdb-pregame-container');
 const otdbParametersForm: HTMLFormElement = document.getElementById(
 	'otdb-parameters-form'
 ) as HTMLFormElement;
 
-const $responseContainer = $('.response-container'); // hidden onload
+const $responseContainer = $('.response-container');
 
 let gameOn: boolean = false;
 let modeSelected: string | undefined;
@@ -156,7 +146,11 @@ const makeBoolean = (): JQuery => {
 	return $booleanEl;
 };
 
-const makeMultiple = (options: string[], credit: string): JQuery => {
+const makeMultiple = (
+	options: string[],
+	credit: string,
+	datatype: string
+): JQuery => {
 	const $multipleEl = $('<div class="multiple-container" />');
 
 	const $boxesContainer = $('<div class="boxes-container"></div>');
@@ -175,7 +169,7 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 
 	for (let i = 0; i < options.length; i++) {
 		const $boxEl = $(`<div class="box-container" id="box-container-${i}">
-		<div class="box-content" id="box-content-${i}">${options[i]}</div></div>`); // TODO: decodeURIComponent error... insert try (catch?) throw
+		<div class="box-content" id="box-content-${i}">${options[i]}</div></div>`);
 
 		$boxEl.css({
 			'padding-top': `${paddingTop}`,
@@ -185,6 +179,30 @@ const makeMultiple = (options: string[], credit: string): JQuery => {
 			'margin-right': `${marginRight}`,
 		});
 
+		if (datatype && datatype !== 'text') {
+			if (datatype === 'color') {
+				$boxEl.css({
+					'background-color': `${options[i]}`,
+					color: 'transparent',
+					padding: '0',
+					width: 'calc(5vw + 5vh)',
+					height: 'calc(5vw + 5vh)',
+					'font-size': '0px',
+				});
+			} else if (datatype === 'img') {
+				$boxEl.css({
+					'font-size': '0px',
+					color: 'transparent',
+					background: `url(${options[i]})`,
+					'background-repeat': 'no-repeat, repeat',
+					'background-position': 'center',
+					'background-size': 'cover',
+					padding: '0',
+					width: 'calc(5vw + 5vh)',
+					height: 'calc(5vw + 5vh)',
+				});
+			}
+		}
 		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$boxEl.on('click', function (e) {
 			e.preventDefault();
@@ -234,11 +252,13 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 	const $sentenceSpans = $($sentenceContainer[0]).children('span');
 	for (let i = 0; i < $sentenceSpans.length; i++) {
 		const $thisSpan = $($sentenceSpans[i]);
-		const thisID = parseInt($thisSpan[0].id, 10); // decimal radix parameter
+		const thisID = parseInt($thisSpan[0].id, 10);
 
 		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$thisSpan.on('input', function (e) {
 			e.preventDefault();
+			$player1Button.css('color', 'white');
+			$player2Button.css('color', 'white');
 
 			if ($thisSpan.text() !== '') {
 				$thisSpan.css('outline', 'goldenrod auto 3px');
@@ -248,7 +268,6 @@ const makeFill = (incomplete: string[], credit: string): JQuery => {
 
 			parsed[thisID] = $thisSpan.text();
 			const responseString = parsed.join(' ').toLowerCase();
-			console.log(responseString);
 			match.response = [responseString];
 		});
 	}
@@ -310,6 +329,8 @@ const makeDropdown = (options: string[][]): JQuery => {
 
 		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$letterInput.on('change', function () {
+			$player1Button.css('color', 'white');
+			$player2Button.css('color', 'white');
 			let responseString = '';
 
 			$dropdownFormContainer
@@ -447,11 +468,8 @@ const runQuiz = function (triviaData: []): void {
 
 		cleanData();
 	};
-	/* eslint-enable @typescript-eslint/no-unused-vars */
 
 	function handleGameOver(lastPlayerName: string) {
-		// TODO: show wrong questions and right answers for each player in $responseContainer
-
 		match.processResponse(
 			lastPlayerName,
 			correctAnswer,
@@ -461,10 +479,11 @@ const runQuiz = function (triviaData: []): void {
 
 		$partialCreditContainer.hide();
 		$questionStatsContainer.hide();
+		$visualContainer.css('visibility', 'hidden');
 		$promptText.text('Game Over!');
 		$responseContainer.fadeOut();
-		$player1Button.fadeOut(); // TODO change animation time so user sees last question border
-		$player2Button.fadeOut(); // TODO change animation time so user sees last question border
+		$player1Button.fadeOut();
+		$player2Button.fadeOut();
 		$p1ScoreText.text(player1.getScore());
 		$p2ScoreText.text(player2.getScore());
 		const winner: string | null = match.getLeader();
@@ -505,7 +524,8 @@ const runQuiz = function (triviaData: []): void {
 		} else if (type === 'multiple') {
 			$responseEl = makeMultiple(
 				_.shuffle(_.concat(correctAnswer, incorrectAnswers)),
-				credit
+				credit,
+				datatype
 			);
 		} else if (type === 'fill') {
 			$responseEl = makeFill(incorrectAnswers, credit);
@@ -594,7 +614,6 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 			type !== 'any' ? `&type=${type}` : ''
 		}&encode=url3986`;
 	} else {
-		//* trivia-cases hosting links
 		url = 'https://cdn.aglty.io/3bikcueb/trivia-cases/dev-challenge.json';
 	}
 
@@ -740,6 +759,7 @@ $playButton.on('click', function (e) {
 		$questionNumberText.text('');
 		$questionDifficultyText.text('');
 		$questionStatsContainer.show();
+		$visualContainer.css('visibility', 'visible');
 		$responseEl.detach();
 		$player1Button.off();
 		$player2Button.off();
