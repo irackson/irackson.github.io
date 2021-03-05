@@ -47,6 +47,7 @@ customLog(
 // TODO: onload / no mode selected response container --> welcome page (fri)
 /* explain easy/medium/hard --> 1/2/3 points
 explain indicator for partial credit means you will gain a fraction of a the total points awarded for a particular question and loose a fraction for each wrong answer selected */
+// TODO: dropdown and fill-in lock button reset after select option
 
 //* middle priority
 // TODO: configure partial credit on fill questions by passing array of all possible partial credit sentences (double spaces, blanks)
@@ -114,6 +115,8 @@ type OtdbParameters = {
 	difficulty: string;
 	type: string;
 };
+
+$('body').show();
 
 const makeBoolean = (): JQuery => {
 	const $booleanEl = $('<div class="boolean-container"/>');
