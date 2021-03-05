@@ -331,6 +331,10 @@ main {
 					font-weight: 700;
 					text-align: center;
 					margin: 0;
+
+					@media only screen and (max-device-width: 480px) {
+						margin-top: 5px;
+					}
 				}
 			}
 
@@ -495,6 +499,10 @@ main {
 					font-weight: 700;
 					text-align: center;
 					margin: 0;
+
+					@media only screen and (max-device-width: 480px) {
+						margin-top: 5px;
+					}
 				}
 			}
 
