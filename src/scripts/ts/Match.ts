@@ -139,14 +139,6 @@ export default class Match {
 			}
 		}
 
-		// ? math check
-		/* console.log('CORRECT ANSWERS:');
-		console.log(correctAnswers);
-		console.log(correctAnswers.length);
-		console.log('INCORRECT ANSWERS');
-		console.log(incorrectAnswers);
-		console.log(`rightLength: ${correctAnswers.length}`);
-		console.log(`wrongLength: ${incorrectAnswers.length}`); */
 		if (numCorrect > 0) {
 			if (credit === 'single') {
 				if (numCorrect === correctAnswers.length && numIncorrect === 0) {
@@ -162,10 +154,6 @@ export default class Match {
 				}
 			}
 		}
-		// ? math check cont.
-		/* console.log(`numCorrect: ${numCorrect}`);
-		console.log(`numIncorrect: ${numIncorrect}`);
-		console.log(`pointsWon: ${pointsWon}`); */
 
 		if (this.player1.getName() === lockersName) {
 			this.player1.setScore(this.player1.getScore() + pointsWon);
