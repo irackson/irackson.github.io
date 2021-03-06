@@ -365,8 +365,8 @@ const runQuiz = function (triviaData: []): void {
 	if (match.currentRound.credit === 'partial') {
 		$partialCreditContainer.fadeIn();
 	}
-	$p1ScoreText.text(Math.floor(match.player1.getScore()));
-	$p2ScoreText.text(Math.floor(match.player2.getScore()));
+	$p1ScoreText.text(Math.round(match.player1.getScore() * 10) / 10);
+	$p2ScoreText.text(Math.round(match.player2.getScore() * 10) / 10);
 
 	$maxPointsText.text(match.maxScore);
 
@@ -482,8 +482,8 @@ const runQuiz = function (triviaData: []): void {
 		$responseContainer.fadeOut();
 		$player1Button.fadeOut();
 		$player2Button.fadeOut();
-		$p1ScoreText.text(Math.floor(match.player1.getScore()));
-		$p2ScoreText.text(Math.floor(match.player2.getScore()));
+		$p1ScoreText.text(Math.round(match.player1.getScore() * 10) / 10);
+		$p2ScoreText.text(Math.round(match.player2.getScore() * 10) / 10);
 
 		const winner: string | null = match.getLeader();
 
@@ -504,8 +504,8 @@ const runQuiz = function (triviaData: []): void {
 		}
 
 		$responseEl.detach();
-		$p1ScoreText.text(Math.floor(match.player1.getScore()));
-		$p2ScoreText.text(Math.floor(match.player2.getScore()));
+		$p1ScoreText.text(Math.round(match.player1.getScore() * 10) / 10);
+		$p2ScoreText.text(Math.round(match.player2.getScore() * 10) / 10);
 
 		$promptText.text(question);
 		$questionNumberText.text(
