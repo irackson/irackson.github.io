@@ -200,6 +200,7 @@ const makeMultiple = (
 				});
 			}
 		}
+		$boxEl.css('color', 'white');
 		// eslint-disable-next-line @typescript-eslint/no-loop-func
 		$boxEl.on('click', function (e) {
 			e.preventDefault();
