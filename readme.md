@@ -7,7 +7,8 @@
 ## **Technology**
 
 <br>
-#### <u>Languages</u>
+
+#### <u>Languages</u>
 
 - HTML
 
@@ -23,7 +24,7 @@
 
 - jQuery
 
-  - AJAX
+- AJAX
 
 - Lodash
 
@@ -38,7 +39,8 @@
 ## **Features**
 
 <br>
-#### <u>Responsive Design</u>
+
+#### <u>Responsive Design</u>
 
 - Equally enjoyable on every device
 
@@ -60,85 +62,87 @@
 
 - CSS / SCSS concepts
 
-  - Gradients
+- Gradients
 
-  - Font sizing based on vmax and em ratios
+- Font sizing based on vmax and em ratios
 
-  - Flexible Box Layout
+- Flexible Box Layout
 
-  - Grid Layout
+- Grid Layout
 
-  - Media queries
+- Media queries
 
-  - Pseudo-elements
+- Pseudo-elements
 
-  - Cross browser compatibility
+- Cross browser compatibility
 
 #### <u>User Experience</u>
 
 - Immersive! No need to ever reload when...
 
-  - Switching between multiple game modes
+- Switching between multiple game modes
 
-  - Starting a new quiz before finishing a round
+- Starting a new quiz before finishing a round
 
-  - Playing with different quiz preferences
+- Playing with different quiz preferences
 
-  - Choosing quiz preferences that cannot be met by the database
+- Choosing quiz preferences that cannot be met by the database
 
-  - Encountering the rare server error
+- Encountering the rare server error
 
 - Easy to pick up! No instructions needed as...
 
-  - Gameplay is intuitive
+- Gameplay is intuitive
 
-  - Every action results in a visible change
+- Every action results in a visible change
 
 ---
 
 ## **Product Highlights**
 
 <br>
-#### <u>Question Types Supported</u>
+
+#### <u>Question Types Supported</u>
 
 - True / False
 
 - Multiple Choice
 
-  - Handles text, gifs & colors
+- Handles text, gifs & colors
 
 - Fill-in The Blank
 
-  - Handles unlimited fields
+- Handles unlimited fields
 
 - Dropdown Selection
 
-  - Handles unlimited sections
+- Handles unlimited sections
 
 #### <u>Multiple Game Modes</u>
 
 - Dev's Challenge
 
-  - Pick question types
+- Pick question types
 
-  - Limit number of questions per type
+- Limit number of questions per type
 
 - Trivia Database
 
-  - Select number of questions
+- Select number of questions
 
-  - Select format
+- Select format
 
-  - Select difficulty
+- Select difficulty
 
-  - Select category
+- Select category
 
 ---
 
 ## **Key Code**
 
 <br>
-#### <u>Getting & Handling the Right Trivia Data with AJAX</u>
+
+#### <u>Getting & Handling the Right Trivia Data with AJAX</u>
 
 ![Getting & Handling the Right Trivia Data with AJAX](https://i.imgur.com/CMnzlS1.png)
 
@@ -160,7 +164,7 @@
 
 ###### _Fill-in The Blank_
 
-![Fill-in The Blank](https://i.imgur.com/XNEDDcp.png)
+![Fillin The Blank](https://i.imgur.com/XNEDDcp.png)
 
 ###### _Dropdown_
 
@@ -173,5 +177,3 @@
 #### <u>Coolest Algorithm</u>
 
 ##### Filtering JSON Object by Property: 'type'
-
-![Filtering JSON Object by Property: 'type'](https://i.imgur.com/yWzWaGh.png)
