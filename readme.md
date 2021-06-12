@@ -3,7 +3,6 @@
 ##### _A front-end project that allows two players or teams to compete for trivia points_
 
 ---
-
 ## **Technology**
 
 <br>
