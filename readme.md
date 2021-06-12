@@ -8,7 +8,7 @@
 
 <br>
 
-#### <u>Languages</u>
+####  <u>Languages</u>
 
 - HTML
 
@@ -40,7 +40,7 @@
 
 <br>
 
-#### <u>Responsive Design</u>
+####  <u>Responsive Design</u>
 
 - Equally enjoyable on every device
 
@@ -102,7 +102,7 @@
 
 <br>
 
-#### <u>Question Types Supported</u>
+####  <u>Question Types Supported</u>
 
 - True / False
 
@@ -142,7 +142,7 @@
 
 <br>
 
-#### <u>Getting & Handling the Right Trivia Data with AJAX</u>
+####  <u>Getting & Handling the Right Trivia Data with AJAX</u>
 
 ![Getting & Handling the Right Trivia Data with AJAX](https://i.imgur.com/CMnzlS1.png)
 
