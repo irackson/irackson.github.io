@@ -642,6 +642,9 @@ const playTrivia = function (otdbParameters?: OtdbParameters): void {
 				$otdbDescriptionText.text(
 					'Sorry! No quiz in the Database matched these parameters. Try less questions and/or less specificity...'
 				);
+				$otdbDescriptionText.css({ color: 'red' });
+				$otdbDescriptionText.fadeOut();
+				$otdbDescriptionText.fadeIn();
 
 				$modeContainer.show();
 				$inactiveGameContainer.show();
@@ -748,6 +751,7 @@ $otdbSelectButton.on('click', function (e) {
 	$devSelectButton.css('border', '1px solid black');
 
 	$otdbSelectButton.css('border', '2px dashed silver');
+	$otdbDescriptionText.css('color', 'black');
 	$otdbDescriptionText.html(
 		'Customize your match! Choose from over 4,000 verified questions housed in the <span class="nowrap">Open Trivia Database.</span>'
 	);
