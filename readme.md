@@ -4,7 +4,7 @@
 
 ### Checkout my walk-through!
 
-<div class="iframe-container"><iframe src="https://www.youtube-nocookie.com/embed/vxnP-gJYzcs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+<div class="iframe-container"><iframe src="https://www.youtube-nocookie.com/embed/vxnP-gJYzcs?modestbranding=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
 ###### *p.s. realized after recording that the game not starting was a feature, not a bug. Open Trivia Database didn't have enough questions of the format/difficult/category specified, so I was redirected back to the menu. Forgot I had coded that in!*
 
