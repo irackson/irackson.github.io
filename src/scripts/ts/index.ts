@@ -47,6 +47,8 @@ explain indicator for partial credit means you will gain a fraction of a the tot
 const $playButton = $('#play-button');
 
 const $inactiveGameContainer = $('.inactive-game-container');
+const $chooseText = $('#choose-text');
+const $modeText = $('#mode-text');
 
 const $activeGameContainer = $('.active-game-container');
 const $p1ScoreText = $('#player-1-points');
@@ -731,6 +733,8 @@ $devSelectButton.on('click', function (e) {
 	$includeButtons.css('border', '1px solid black');
 	devPreferences = allQuestionTypes;
 	modeSelected = 'dev';
+	$chooseText.html('☝️ CLICK PLAY ☝️');
+	$modeText.html('TO START');
 });
 
 $otdbSelectButton.on('click', function (e) {
@@ -752,6 +756,8 @@ $otdbSelectButton.on('click', function (e) {
 	$otdbPregameContainer.show();
 
 	modeSelected = 'otdb';
+	$chooseText.html('☝️ CLICK PLAY ☝️');
+	$modeText.html('TO START');
 });
 
 $playButton.on('click', function (e) {
@@ -784,7 +790,8 @@ $playButton.on('click', function (e) {
 		$devSelectButton.css('border', '1px solid black');
 		$otdbSelectButton.css('border', '1px solid black');
 		$playButton.css('border', '1px solid goldenrod');
-
+		$chooseText.html('CHOOSE');
+		$modeText.html('GAME MODE');
 		gameOn = false;
 		modeSelected = undefined;
 	} else if (
