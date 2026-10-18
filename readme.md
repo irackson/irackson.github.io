@@ -1,5 +1,7 @@
 # [Ian's Trivia Game](https://irackson.github.io/dist/index.html)
 
+[Emergency publication notes and current build blocker](EMERGENCY-HOTFIX.md) preserve the existing Pages branch, artifact verification and rollback requirements.
+
 ##### _A front-end project that allows two players or teams to compete for trivia points_
 
 ### Checkout my walk-through!
